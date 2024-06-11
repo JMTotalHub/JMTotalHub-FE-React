@@ -4,6 +4,9 @@ import './App.css';
 // App.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import api from './api'; // 헬퍼 함수 
+
+const API_URL = process.env.EXPRESS_API_URL;
 
 const App = () => {
   const [tests, setTests] = useState([]);
@@ -12,8 +15,8 @@ const App = () => {
   useEffect(() => {
     const fetchTests = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/tests');
-        // const response = await axios.get('/tests');
+        // const response = await axios.get('http://localhost:5000/tests');
+        const response = await api.get('/tests'); 
         setTests(response.data);
       } catch (error) {
         setError(error.message);
