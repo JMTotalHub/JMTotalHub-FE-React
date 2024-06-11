@@ -1,7 +1,11 @@
 import axios from 'axios';
 
 const ENV = process.env.REACT_APP_ENV;
-const API_URL = process.env.REACT_APP_SERVER_URL;
+const SERVER_IP = process.env.REACT_APP_SERVER_IP;
+// const PROTOCOL = ENV === 'prod' ? 'https' : 'http';
+
+const PROTOCOL = 'http';
+const API_URL = `${PROTOCOL}://${SERVER_IP}`;
 
 let api;
 
