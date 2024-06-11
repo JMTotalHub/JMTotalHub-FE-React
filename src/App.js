@@ -1,9 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
 
 // App.js
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import api from './api'; // 헬퍼 함수 
 
 const API_URL = process.env.EXPRESS_API_URL;

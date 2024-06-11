@@ -1,10 +1,25 @@
 import axios from 'axios';
 
-const API_URL = process.env.REACT_APP_EXPRESS_API_URL;
+const ENV = process.env.REACT_APP_ENV;
+const API_URL = process.env.REACT_APP_SERVER_URL;
 
-// API 호출 헬퍼 함수
-const api = axios.create({
-  baseURL: API_URL,
-});
+let api;
+
+if (ENV === 'dev') {
+  // 개발 환경의 API 호출 헬퍼 함수
+  api = axios.create({
+    baseURL: API_URL
+  });
+} else if (ENV === 'prod') {
+  // 배포 환경의 API 호출 헬퍼 함수
+  api = axios.create({
+    baseURL: `${API_URL}/api`
+  });
+} else {
+  // 기본 API 호출 헬퍼 함수 (환경 변수 설정이 없을 경우)
+  api = axios.create({
+    baseURL: API_URL
+  });
+}
 
 export default api;
