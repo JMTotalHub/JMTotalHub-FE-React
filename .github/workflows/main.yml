@@ -39,7 +39,7 @@ jobs:
         script: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           export REACT_APP_ENV=${{ secrets.REACT_APP_ENV }}
-          export REACT_APP_EXPRESS_API_URL=${{ secrets.REACT_APP_EXPRESS_API_URL }}
+          export REACT_APP_SERVER_IP=${{ secrets.REACT_APP_SERVER_IP }}
           cd JMTotalHub-DockerCompose
           sudo -E docker-compose pull react 
           sudo -E docker-compose up -d react 
