@@ -1,42 +1,20 @@
 import './App.css';
 
 // App.js
-import React, { useEffect, useState } from 'react';
-import api from './api'; // 헬퍼 함수 
+import React from 'react';
+import { Route, Router, Routes } from 'react-router-dom';
 
-const API_URL = process.env.EXPRESS_API_URL;
+import Test from './pages/test/Test';
+import Board from './pages/board';
+
+// const API_URL = process.env.EXPRESS_API_URL;
 
 const App = () => {
-  const [tests, setTests] = useState([]);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchTests = async () => {
-      try {
-        // const response = await axios.get('http://localhost:5000/tests');
-        const response = await api.get('/tests'); 
-        setTests(response.data);
-      } catch (error) {
-        setError(error.message);
-      }
-    };
-
-    fetchTests();
-  }, []);
-
   return (
-    <div>
-      <h1>Tests</h1>
-      {error ? (
-        <p>Error fetching tests: {error}</p>
-      ) : (
-        <ul>
-          {tests.map(test => (
-            <li key={test.id}>{test.title}: {test.content}</li>
-          ))}
-        </ul>
-      )}
-    </div>
+    <Routes>
+      <Route path="/tests/*" element={<Test />} />
+      <Route path="/boards/*" element={<Board />} />
+    </Routes>
   );
 };
 
