@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { postListByBoardId } from '../actions/PostListAction';
+import postListByBoardId from '../../actions/post/PostListAction';
 
-const postsSlice = createSlice({
+const postListSlice = createSlice({
   // 슬라이스 정의(store, reducer 중간 부분)
-  name: 'posts',
+  name: 'postList',
   // state 값 초기 결정
   initialState: {
     postList: [],
@@ -36,4 +36,4 @@ const postsSlice = createSlice({
   },
 });
 
-export default postsSlice.reducer;
+export default postListSlice.reducer;

@@ -1,8 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import postsReducer from '../features/board/slices/PostListSlice';
+
+import postListSlice from '../features/board/slices/post/PostListSlice';
+import postDetailsSlice from '../features/board/slices/post/PostDetailsSlice';
 
 export const boardStore = configureStore({
   reducer: {
-    postList: postsReducer,
+    postList: postListSlice,
+    postDetails: postDetailsSlice,
   },
 });

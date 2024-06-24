@@ -1,19 +1,15 @@
 import React from 'react';
-import { Route, Routes, Outlet } from 'react-router-dom';
+import { Outlet, Route, Routes } from 'react-router-dom';
 
-import PostList from './PostList';
-import PostDetails from './PostDetails';
+import BoardContentPage from './BoardContentPage';
 
 const Board = () => {
   return (
     <div>
-      <h1>Board index.js</h1>
-      <h2>이곳에 게시판 기능의 공통 부분 작성</h2>
+      <h1>게시판 기능의 공통 부분 작성</h1>
       <Routes>
-        <Route path="/:boardId/posts" element={<PostList />} />
-        <Route path="/posts/:postId" element={<PostDetails />} />
+        <Route path="/:boardId/*" element={<BoardContentPage />} />
       </Routes>
-
       <Outlet />
     </div>
   );

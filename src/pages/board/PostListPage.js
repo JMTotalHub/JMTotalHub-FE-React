@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { postListByBoardId } from '../../features/board/actions/PostListAction';
 import { useParams } from 'react-router-dom';
-import PostList from '../../components/board/PostList'
+import postListByBoardId from '../../features/board/actions/post/PostListAction';
+import PostsListComponent from '../../components/board/PostListComponent';
 
-const PostsList = () => {
+const PostsListPage = () => {
   const { boardId } = useParams(); // URL 파라미터에서 boardId를 가져옴
 
   const dispatch = useDispatch();
@@ -25,15 +25,15 @@ const PostsList = () => {
   }, [currentPage]);
 
   return (
-    <PostList
+    <PostsListComponent
       postList={postList}
       totalPage={totalPage}
       currentPage={currentPage}
       setCurrentPage={setCurrentPage}
       status={status}
       error={error}
-    ></PostList>
+    ></PostsListComponent>
   );
 };
 
-export default PostsList;
+export default PostsListPage;
