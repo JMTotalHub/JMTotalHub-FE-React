@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchPostsByBoardId } from './action';
+import { postListByBoardId } from '../actions/PostListAction';
 
 const postsSlice = createSlice({
   // 슬라이스 정의(store, reducer 중간 부분)
@@ -17,18 +17,18 @@ const postsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchPostsByBoardId.pending, (state) => {
+      .addCase(postListByBoardId.pending, (state) => {
         // API 요청 시작 상태
         state.status = 'loading';
       })
-      .addCase(fetchPostsByBoardId.fulfilled, (state, action) => {
+      .addCase(postListByBoardId.fulfilled, (state, action) => {
         // API 요청 성공 상태
         state.status = 'succeeded';
         state.postList = action.payload.postList;
         state.totalPage = action.payload.totalPage;
         state.pageNum = action.payload.pageNum;
       })
-      .addCase(fetchPostsByBoardId.rejected, (state, action) => {
+      .addCase(postListByBoardId.rejected, (state, action) => {
         // API 요청 실패 상태
         state.status = 'failed';
         state.error = action.error.message;
