@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../../../utils/api';
 
-const PostDetailsByPostId = createAsyncThunk(
+const postDetailsByPostId = createAsyncThunk(
   'postDetails/postDetailsByPostId',
   async ({ postId }) => {
     const response = await api.get(`boards/posts/${postId}`);
@@ -11,4 +11,4 @@ const PostDetailsByPostId = createAsyncThunk(
   }
 );
 
-export default PostDetailsByPostId;
+export default postDetailsByPostId;

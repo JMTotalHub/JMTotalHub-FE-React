@@ -1,6 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-const PostDetailsComponent = ({ postDetails, status, error }) => {
+import postDetailsByPostId from '../../../features/board/post/actions/PostDetailsAction';
+
+const PostDetailsComponent = ({ postId }) => {
+  const dispatch = useDispatch();
+
+  const { postDetails, status, error } = useSelector(
+    (state) => state.postDetails
+  );
+
+  useEffect(() => {
+    dispatch(
+      postDetailsByPostId({
+        postId,
+      })
+    );
+  }, []);
+
   if (status === 'idle') {
     return <div>Loading... 데이터를 요청합니다.</div>;
   }

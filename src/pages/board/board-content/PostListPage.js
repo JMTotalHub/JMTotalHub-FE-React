@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import postListByBoardId from '../../features/board/post/actions/PostListAction';
-import PostsListComponent from '../../components/board/PostListComponent';
+import postListByBoardId from '../../../features/board/post/actions/PostListAction';
+import PostsListComponent from '../../../components/board/post/PostListComponent';
 
 const PostsListPage = () => {
   const { boardId } = useParams(); // URL 파라미터에서 boardId를 가져옴

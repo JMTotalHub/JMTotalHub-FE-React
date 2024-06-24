@@ -1,24 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
-import PostDetailsByPostId from '../actions/PostDetailsAction';
+import postDetailsByPostId from '../actions/PostDetailsAction';
 
 const PostDetailsSlice = createSlice({
   name: 'postDetails',
   initialState: {
-    postDetails: null,
+    postDetails: {},
     status: 'idle',
     error: null,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(PostDetailsByPostId.pending, (state) => {
+      .addCase(postDetailsByPostId.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(PostDetailsByPostId.fulfilled, (state, action) => {
+      .addCase(postDetailsByPostId.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.postDetails = action.payload;
       })
-      .addCase(PostDetailsByPostId.rejected, (state, action) => {
+      .addCase(postDetailsByPostId.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       });

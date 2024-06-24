@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet, Route, Routes } from 'react-router-dom';
 
-import BoardContentPage from './BoardContentPage';
+import BoardContentPage from './board-content';
 
 const Board = () => {
   return (

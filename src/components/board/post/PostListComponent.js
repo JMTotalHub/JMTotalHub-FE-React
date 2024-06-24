@@ -1,5 +1,5 @@
 import React from 'react';
-import Pagination from '../common/Pagination';
+import Pagination from '../../common/Pagination';
 import { Link } from 'react-router-dom';
 
 const PostsListComponent = ({
