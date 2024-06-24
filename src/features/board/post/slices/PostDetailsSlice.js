@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import React from 'react';
-import PostDetailsByPostId from '../../actions/post/PostDetailsAction';
+import PostDetailsByPostId from '../actions/PostDetailsAction';
 
 const PostDetailsSlice = createSlice({
   name: 'postDetails',

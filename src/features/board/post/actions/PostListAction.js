@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import api from '../../../../utils/api';
+
 // Thunk 액션 생성
 // (식별용 타입, 비동기 함수)
 const postListByBoardId = createAsyncThunk(

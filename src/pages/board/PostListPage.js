@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import postListByBoardId from '../../features/board/actions/post/PostListAction';
+import postListByBoardId from '../../features/board/post/actions/PostListAction';
 import PostsListComponent from '../../components/board/PostListComponent';
 
 const PostsListPage = () => {

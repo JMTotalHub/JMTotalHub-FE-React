@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import postListByBoardId from '../../actions/post/PostListAction';
+import postListByBoardId from '../actions/PostListAction';
 
 const postListSlice = createSlice({
   // 슬라이스 정의(store, reducer 중간 부분)

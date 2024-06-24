@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import React from 'react';
 import api from '../../../../utils/api';
 
 const PostDetailsByPostId = createAsyncThunk(
