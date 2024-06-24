@@ -4,8 +4,8 @@ const Pagination = ({ totalPage, currentPage, onPageChange }) => {
   return (
     <div>
       {Array.from({ length: totalPage }, (_, index) => (
-        <button 
-          key={index + 1} 
+        <button
+          key={index + 1}
           onClick={() => onPageChange(index + 1)}
           style={{ fontWeight: currentPage === index + 1 ? 'bold' : 'normal' }}
         >

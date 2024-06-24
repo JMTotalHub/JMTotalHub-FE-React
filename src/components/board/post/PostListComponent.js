@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Pagination from '../../common/Pagination';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import postListByBoardId from '../../../features/board/post/actions/PostListAction';
 
-const PostsListComponent = ({
-  postList,
-  totalPage,
-  currentPage,
-  setCurrentPage,
-  status,
-  error,
-}) => {
+const PostsListComponent = ({ boardId }) => {
+  const dispatch = useDispatch();
+  const { postList, totalPage, pageNum, status, error } = useSelector(
+    (state) => state.postList
+  );
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    dispatch(
+      postListByBoardId({
+        boardId,
+        // queryData: { pageNum: 1, dataPerPage: 10, searchType: 'title', searchText: '테스트' },
+        queryData: { pageNum: currentPage, dataPerPage: 10 },
+      })
+    );
+  }, [currentPage]);
+
   if (status === 'idle') {
     return <div>Loading... 데이터를 요청합니다.</div>;
   }

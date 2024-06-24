@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Pagination from '../../common/Pagination';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -7,17 +7,20 @@ import commentListByPostId from '../../../features/board/comment/actions/Comment
 const CommentListComponent = ({ postId }) => {
   const dispatch = useDispatch();
 
-  const { commentList, totalPage, currentPage, status, error } = useSelector(
+  const { commentList, totalPage, pageNum, status, error } = useSelector(
     (state) => state.commentList
   );
+
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     dispatch(
       commentListByPostId({
         postId,
+        queryData: { pageNum: currentPage, dataPerPage: 10 },
       })
     );
-  });
+  }, [currentPage]);
 
   if (status === 'idle') {
     return <div>Loading... 데이터를 요청합니다.</div>;
