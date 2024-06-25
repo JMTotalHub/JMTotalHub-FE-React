@@ -3,6 +3,7 @@ import { Route, Routes, Outlet, useParams } from 'react-router-dom';
 
 import PostList from './PostListPage';
 import PostDetailsPage from './PostDetailsPage';
+import PostCreatePage from './PostCreatePage';
 
 const BoardContentPage = () => {
   // const { boardId } = useParams();
@@ -13,6 +14,8 @@ const BoardContentPage = () => {
       <Routes>
         <Route path="posts" element={<PostList />} />
         <Route path="posts/:postId" element={<PostDetailsPage />} />
+        <Route path="posts/new" element={<PostCreatePage />} />
+        {/* <Route path='posts/:postId/edit' element={<PostUpdatePage />}/> */}
       </Routes>
       <Outlet />
     </div>
