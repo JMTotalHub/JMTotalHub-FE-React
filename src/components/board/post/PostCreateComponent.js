@@ -39,7 +39,7 @@ const PostCreateComponent = () => {
     dispatch(
       postCreateByBoardIdAndData({
         boardId,
-        bodyData: { title, content: jsonContent },
+        bodyData: { title: title, content: jsonContent },
       })
     );
   };

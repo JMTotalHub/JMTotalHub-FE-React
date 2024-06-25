@@ -4,6 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import postDetailsByPostId from '../../../features/board/post/actions/PostDetailsAction';
 import { Editor, EditorState, convertFromRaw } from 'draft-js';
 
+function decodeHtmlEntities(str) {
+  const textarea = document.createElement('textarea');
+  textarea.innerHTML = str;
+  return textarea.value;
+}
+
 const PostDetailsComponent = ({ postId }) => {
   const dispatch = useDispatch();
 
@@ -34,8 +40,8 @@ const PostDetailsComponent = ({ postId }) => {
 
   let editorState;
   try {
-    console.log('postDetails.content:', postDetails.content);
-    const contentState = convertFromRaw(JSON.parse(postDetails.content));
+    const decodedContent = decodeHtmlEntities(postDetails.content);
+    const contentState = convertFromRaw(JSON.parse(decodedContent));
     editorState = EditorState.createWithContent(contentState);
   } catch (error) {
     console.error('Failed to parse content:', error);
