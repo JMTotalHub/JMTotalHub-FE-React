@@ -9,7 +9,6 @@ const BoardContentPage = () => {
 
   return (
     <div>
-      {/* <h2>특정 게시판 {boardId}에 대한 내용</h2> */}
       <h2>특정 게시판에 대한 내용</h2>
       <Routes>
         <Route path="posts" element={<PostList />} />

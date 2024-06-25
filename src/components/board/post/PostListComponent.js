@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Pagination from '../../common/Pagination';
-import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import postListByBoardId from '../../../features/board/post/actions/PostListAction';
+import Pagination from '../../common/Pagination';
 
 const PostsListComponent = ({ boardId }) => {
   const dispatch = useDispatch();

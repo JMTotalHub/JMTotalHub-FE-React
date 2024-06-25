@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Pagination from '../../common/Pagination';
 import { useDispatch, useSelector } from 'react-redux';
+import Pagination from '../../common/Pagination';
 
 import commentListByPostId from '../../../features/board/comment/actions/CommentListAction';
 
