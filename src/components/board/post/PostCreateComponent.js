@@ -1,53 +1,75 @@
-import React, { useEffect, useState } from 'react';
-import EditorComponent from '../../common/DraftEditor/DraftEditorComponent';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { EditorState, convertToRaw } from 'draft-js';
+import postCreateByBoardIdAndData from '../../../features/board/post/actions/PostCreateAction';
+import DraftEditorComponent from '../../common/DraftEditor/DraftEditorComponent';
 
 const PostCreateComponent = () => {
   const { boardId } = useParams();
 
-  const [editorContent, setEditorContent] = useState(null);
+  const [title, setTitle] = useState('');
+  const [editorState, setEditorState] = useState(() =>
+    EditorState.createEmpty()
+  );
+
+  const { postDetails, status, error } = useSelector(
+    (state) => state.postCreate
+  );
 
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!editorContent) {
-      console.error('Editor content is empty');
+    const contentState = editorState.getCurrentContent();
+    const rawContent = convertToRaw(contentState);
+    const jsonContent = JSON.stringify(rawContent);
+
+    if (!rawContent || !title) {
+      console.error('Title or content is empty');
       return;
     }
 
-    try {
-      const response = await axios.post('http://localhost:3000/posts', {
-        title,
-        content: editorContent,
-      });
+    console.log(editorState);
+    console.log(title);
+    console.log(contentState);
+    console.log(rawContent);
+    console.log(jsonContent);
 
-      console.log('Post created:', response.data);
-
-      dispatch(
-        postCreateByBoardIdAndData({
-          boardId,
-          bodyData: { title, content: editorContent },
-        })
-      );
-    } catch (error) {
-      console.error('Error creating post:', error);
-    }
-  };
-
-  useEffect(() => {
     dispatch(
       postCreateByBoardIdAndData({
         boardId,
-        bodyData: { content: editorState },
+        bodyData: { title, content: jsonContent },
       })
     );
-  });
+  };
+
+  if (status === 'loading') {
+    return <div>Loading... 데이터를 저장하고 있습니다.</div>;
+  }
+
+  if (status === 'failed') {
+    console.log('api 통신 에러 : ' + error);
+    return <div>Error: 게시글 데이터를 저장하지 못했습니다.</div>;
+  }
 
   return (
     <div>
-      <EditorComponent />
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>제목:</label>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+        <DraftEditorComponent
+          editorState={editorState}
+          setEditorState={setEditorState}
+        />
+        <button type="submit">저장</button>
+      </form>
     </div>
   );
 };
