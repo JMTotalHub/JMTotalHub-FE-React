@@ -2,13 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import postDetailsByPostId from '../../../features/board/post/actions/PostDetailsAction';
-import { Editor, EditorState, convertFromRaw } from 'draft-js';
-
-function decodeHtmlEntities(str) {
-  const textarea = document.createElement('textarea');
-  textarea.innerHTML = str;
-  return textarea.value;
-}
 
 const PostDetailsComponent = ({ postId }) => {
   const dispatch = useDispatch();
@@ -38,24 +31,10 @@ const PostDetailsComponent = ({ postId }) => {
     return <div>Error: 게시글 데이터를 불러오지 못했습니다.</div>;
   }
 
-  let editorState;
-  try {
-    const decodedContent = decodeHtmlEntities(postDetails.content);
-    const contentState = convertFromRaw(JSON.parse(decodedContent));
-    editorState = EditorState.createWithContent(contentState);
-  } catch (error) {
-    console.error('Failed to parse content:', error);
-    return <div>Error: 게시글 내용을 불러오는데 실패했습니다.</div>;
-  }
-
   return (
-    // <div>
-    //   <p>{postDetails.title}</p>
-    //   <p>{postDetails.content}</p>
-    // </div>
     <div>
       <h1>{postDetails.title}</h1>
-      <Editor editorState={editorState} readOnly toolbarHidden />
+      <text>{postDetails.content}</text>
     </div>
   );
 };
