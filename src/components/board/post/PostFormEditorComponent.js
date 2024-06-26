@@ -6,7 +6,10 @@ import postCreateByBoardIdAndData from '../../../features/board/post/actions/Pos
 import QuillEditor from '../../common/QuillEditor';
 
 const PostFormEditorComponent = ({ mode }) => {
-  const { boardId } = useParams();
+  const { boardId, postId } = useParams();
+
+  console.log(boardId);
+  console.log(postId);
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -24,9 +27,6 @@ const PostFormEditorComponent = ({ mode }) => {
       console.error('Title or content is empty');
       return;
     }
-
-    console.log(title);
-    console.log(content);
 
     dispatch(
       postCreateByBoardIdAndData({
