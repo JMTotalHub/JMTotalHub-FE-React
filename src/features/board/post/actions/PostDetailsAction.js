@@ -5,8 +5,6 @@ const postDetailsByPostId = createAsyncThunk(
   'postDetails/postDetailsByPostId',
   async ({ postId }) => {
     const response = await api.get(`boards/posts/${postId}`);
-    console.log('action go!!!!!!!!!!!!');
-    console.log(response.data);
     return response.data;
   }
 );
