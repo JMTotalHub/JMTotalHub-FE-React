@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import postCreateByBoardIdAndData from '../../../features/board/post/actions/PostCreateAction';
+import QuillEditor from '../../common/QuillEditor';
 
 const PostCreateComponent = () => {
   const { boardId } = useParams();
@@ -56,12 +56,7 @@ const PostCreateComponent = () => {
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
-        <ReactQuill
-          value={content}
-          onChange={setContent}
-          // modules={modules}
-          // formats={formats}
-        />
+        <QuillEditor value={content} onChange={setContent} />
         <button type="submit">저장</button>
       </form>
     </div>

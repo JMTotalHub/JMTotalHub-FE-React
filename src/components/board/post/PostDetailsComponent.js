@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { htmlDecoder } from '../../../utils/htmlDecoder';
 
 import postDetailsByPostId from '../../../features/board/post/actions/PostDetailsAction';
 
@@ -31,10 +32,16 @@ const PostDetailsComponent = ({ postId }) => {
     return <div>Error: 게시글 데이터를 불러오지 못했습니다.</div>;
   }
 
+  const decodedContent = htmlDecoder(postDetails.content);
+
+  console.log('decodedContent:', decodedContent);
+
   return (
     <div>
-      <h1>{postDetails.title}</h1>
-      <text>{postDetails.content}</text>
+      <div>
+        <h1>{postDetails.title}</h1>
+      </div>
+      <div dangerouslySetInnerHTML={{ __html: decodedContent }} />
     </div>
   );
 };
