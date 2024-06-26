@@ -1,13 +1,13 @@
 import React from 'react';
 import PostFormEditorComponent from '../../../components/board/post/PostFormEditorComponent';
 
-const PostCreatePage = () => {
+const PostUpdatePage = () => {
   return (
     <div>
-      <h1>게시글 작성 페이지</h1>
+      <h1>게시글 수정 페이지</h1>
       <PostFormEditorComponent />
     </div>
   );
 };
 
-export default PostCreatePage;
+export default PostUpdatePage;

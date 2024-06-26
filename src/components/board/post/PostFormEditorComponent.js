@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import postCreateByBoardIdAndData from '../../../features/board/post/actions/PostCreateAction';
 import QuillEditor from '../../common/QuillEditor';
 
-const PostCreateComponent = () => {
+const PostFormEditorComponent = ({ mode }) => {
   const { boardId } = useParams();
 
   const [title, setTitle] = useState('');
@@ -63,4 +63,4 @@ const PostCreateComponent = () => {
   );
 };
 
-export default PostCreateComponent;
+export default PostFormEditorComponent;
