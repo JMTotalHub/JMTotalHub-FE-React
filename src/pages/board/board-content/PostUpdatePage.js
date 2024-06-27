@@ -1,11 +1,11 @@
 import React from 'react';
-import PostFormEditorComponent from '../../../components/board/post/PostFormEditorComponent';
+import PostUpdateComponent from '../../../components/board/post/PostUpdateComponent';
 
 const PostUpdatePage = () => {
   return (
     <div>
       <h1>게시글 수정 페이지</h1>
-      <PostFormEditorComponent mode={'edit'} />
+      <PostUpdateComponent />
     </div>
   );
 };
