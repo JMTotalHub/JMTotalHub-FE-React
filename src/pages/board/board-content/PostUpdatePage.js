@@ -5,7 +5,7 @@ const PostUpdatePage = () => {
   return (
     <div>
       <h1>게시글 수정 페이지</h1>
-      <PostFormEditorComponent />
+      <PostFormEditorComponent mode={'edit'} />
     </div>
   );
 };

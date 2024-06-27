@@ -5,7 +5,7 @@ const PostCreatePage = () => {
   return (
     <div>
       <h1>게시글 작성 페이지</h1>
-      <PostFormEditorComponent />
+      <PostFormEditorComponent mode={'create'} />
     </div>
   );
 };
