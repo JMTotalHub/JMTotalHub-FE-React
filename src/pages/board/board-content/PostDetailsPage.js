@@ -3,15 +3,20 @@ import { Link, useParams } from 'react-router-dom';
 
 import CommentListComponent from '../../../components/board/comment/CommentListComponent';
 import PostDetailsComponent from '../../../components/board/post/PostDetailsComponent';
+import { useSelector } from 'react-redux';
 
 const PostDetailsPage = () => {
-  const { postId } = useParams();
+  const { boardId, postId } = useParams();
+  const { pageNum } = useSelector((state) => state.postList);
+
+  console.log('pageNum : ' + pageNum);
 
   return (
     <>
       <PostDetailsComponent postId={postId}></PostDetailsComponent>
-      <CommentListComponent postId={postId}></CommentListComponent>
       <Link to="edit">글 수정</Link>
+      <Link to={`/boards/${boardId}/posts?pageNum=${pageNum}`}>삭제</Link>
+      <CommentListComponent postId={postId}></CommentListComponent>
     </>
   );
 };

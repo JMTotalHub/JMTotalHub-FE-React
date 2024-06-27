@@ -6,9 +6,7 @@ import postUpdateByPostIdAndData from '../../../features/board/post/actions/Post
 import PostFormComponent from './PostFormComponent';
 import { htmlDecoder } from '../../../utils/htmlDecoder';
 
-const PostUpdateComponent = () => {
-  const { postId } = useParams();
-
+const PostUpdateComponent = ({ postId }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const { postDetails, status, error } = useSelector(

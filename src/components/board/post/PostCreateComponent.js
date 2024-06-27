@@ -4,9 +4,7 @@ import postCreateByBoardIdAndData from '../../../features/board/post/actions/Pos
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-const PostCreateComponent = () => {
-  const { boardId } = useParams();
-
+const PostCreateComponent = ({ boardId }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const { status, error } = useSelector((state) => state.postCreate);
