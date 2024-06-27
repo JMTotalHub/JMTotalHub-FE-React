@@ -8,7 +8,7 @@ const PostDeleteSlice = createSlice({
     error: null,
   },
   reducers: {
-    resetStatus: (state) => {
+    postDeleteSliceResetState: (state) => {
       state.status = 'idle';
       state.error = null;
     },
@@ -28,5 +28,5 @@ const PostDeleteSlice = createSlice({
   },
 });
 
-export const { resetStatus } = PostDeleteSlice.actions;
+export const { postDeleteSliceResetState } = PostDeleteSlice.actions;
 export default PostDeleteSlice.reducer;

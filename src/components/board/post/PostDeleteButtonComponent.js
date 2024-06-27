@@ -2,18 +2,16 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import PostDeleteActionByPostId from '../../../features/board/post/actions/PostDeleteAction';
-import { resetStatus } from '../../../features/board/post/slices/PostDeleteSlice';
+import { postDeleteSliceResetState } from '../../../features/board/post/slices/PostDeleteSlice';
 
 const PostDeleteButtonComponent = ({ boardId, postId, pageNum }) => {
   const { status, error } = useSelector((state) => state.postDelete);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log('delete : ' + status);
-
   useEffect(() => {
     if (status === 'succeeded') {
-      dispatch(resetStatus());
+      dispatch(postDeleteSliceResetState());
       navigate(`/boards/${boardId}/posts?page=${pageNum}`);
     }
   }, [status]);

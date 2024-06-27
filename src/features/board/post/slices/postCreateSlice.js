@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import React from 'react';
 import postCreateByBoardIdAndData from '../actions/PostCreateAction';
 
 // 지금은 응답값을 받고 있지만, 나중에 필요없으면 제거 - express에서도 수정
@@ -10,7 +9,13 @@ const postCreateSlice = createSlice({
     status: 'idle',
     error: null,
   },
-  reducers: {},
+  reducers: {
+    postCreateSliceResetState: (state) => {
+      state.postDetails = {};
+      state.status = 'idle';
+      state.error = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(postCreateByBoardIdAndData.pending, (state) => {
@@ -27,4 +32,5 @@ const postCreateSlice = createSlice({
   },
 });
 
+export const { postCreateSliceResetState } = postCreateSlice.actions;
 export default postCreateSlice.reducer;
