@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import postListByBoardId from '../../../features/board/post/actions/PostListAction';
 import Pagination from '../../common/Pagination';
 
@@ -10,7 +10,17 @@ const PostsListComponent = ({ boardId }) => {
     (state) => state.postList
   );
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const pageParam = searchParams.get('page');
+  const [currentPage, setCurrentPage] = useState(
+    pageParam ? parseInt(pageParam) : 1
+  );
+
+  const handlePageNum = (page) => {
+    setSearchParams({ page });
+    setCurrentPage(page);
+  };
 
   useEffect(() => {
     dispatch(
@@ -60,7 +70,7 @@ const PostsListComponent = ({ boardId }) => {
       <Pagination
         totalPage={totalPage}
         currentPage={currentPage}
-        onPageChange={setCurrentPage}
+        onPageChange={handlePageNum}
       />
     </div>
   );

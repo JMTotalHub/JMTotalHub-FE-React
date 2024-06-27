@@ -19,6 +19,11 @@ const PostFormComponent = ({
     return <div>Error: 게시글 데이터를 저장하지 못했습니다.</div>;
   }
 
+  // if (status === 'succeeded') {
+  //   console.log('api 통신 에러 : ' + error);
+  //   navigate(`/boards/${boardId}/posts?page=${pageNum}`);
+  // }
+
   return (
     <form onSubmit={onSubmit}>
       <div>
