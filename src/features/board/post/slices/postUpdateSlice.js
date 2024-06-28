@@ -6,35 +6,44 @@ const postUpdateSlice = createSlice({
   name: 'postUpdate',
   initialState: {
     postDetails: {},
-    status: 'idle',
+    getStatus: 'idle',
+    updateStatus: 'idle',
     error: null,
   },
-  reducers: {},
+  reducers: {
+    postUpdateSliceResetState: (state) => {
+      state.postDetails = {};
+      state.getStatus = 'idle';
+      state.updateStatus = 'idle';
+      state.error = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(postUpdateInitByPostId.pending, (state) => {
-        state.status = 'loading';
+        state.getStatus = 'loading';
       })
       .addCase(postUpdateInitByPostId.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+        state.getStatus = 'succeeded';
         state.postDetails = action.payload;
       })
       .addCase(postUpdateInitByPostId.rejected, (state, action) => {
-        state.status = 'failed';
+        state.getStatus = 'failed';
         state.error = action.error.message;
       })
       .addCase(postUpdateByPostIdAndData.pending, (state) => {
-        state.status = 'loading';
+        state.updateStatus = 'loading';
       })
       .addCase(postUpdateByPostIdAndData.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+        state.updateStatus = 'succeeded';
         state.postDetails = action.payload;
       })
       .addCase(postUpdateByPostIdAndData.rejected, (state, action) => {
-        state.status = 'failed';
+        state.updateStatus = 'failed';
         state.error = action.error.message;
       });
   },
 });
 
+export const { postUpdateSliceResetState } = postUpdateSlice.actions;
 export default postUpdateSlice.reducer;

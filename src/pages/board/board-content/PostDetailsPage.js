@@ -16,6 +16,7 @@ const PostDetailsPage = () => {
     <>
       <PostDetailsComponent postId={postId}></PostDetailsComponent>
       <Link to="edit">글 수정</Link>
+      {/* <Link to={`/boards/${boardId}/posts/${postId}/edit`}>글 수정</Link> */}
       {/* <Link to={`/boards/${boardId}/posts?pageNum=${pageNum}`}>삭제</Link> */}
       <PostDeleteButtonComponent
         boardId={boardId}

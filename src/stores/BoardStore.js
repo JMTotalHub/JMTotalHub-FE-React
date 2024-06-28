@@ -9,15 +9,22 @@ import postUpdateSlice from '../features/board/post/slices/postUpdateSlice';
 import PostDeleteSlice from '../features/board/post/slices/PostDeleteSlice';
 
 import commentListSlice from '../features/board/comment/slices/CommentListSlice';
+import CommentCreateSlice from '../features/board/comment/slices/CommentCreateSlice';
 
 export const boardStore = configureStore({
   reducer: {
+    // 게시판
     boardList: boardListSlice,
+
+    // 게시글
     postList: postListSlice,
     postDetails: postDetailsSlice,
     postCreate: postCreateSlice,
     postUpdate: postUpdateSlice,
     postDelete: PostDeleteSlice,
+
+    // 댓글
     commentList: commentListSlice,
+    commentCreate: CommentCreateSlice,
   },
 });

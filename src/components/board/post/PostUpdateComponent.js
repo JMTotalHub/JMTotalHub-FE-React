@@ -1,19 +1,30 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import postUpdateInitByPostId from '../../../features/board/post/actions/PostUpdateInitAction';
-import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import postUpdateByPostIdAndData from '../../../features/board/post/actions/PostUpdateAction';
-import PostFormComponent from './PostFormComponent';
+import postUpdateInitByPostId from '../../../features/board/post/actions/PostUpdateInitAction';
+import { postUpdateSliceResetState } from '../../../features/board/post/slices/postUpdateSlice';
 import { htmlDecoder } from '../../../utils/htmlDecoder';
+import PostFormComponent from './PostFormComponent';
+import { useNavigate } from 'react-router-dom';
 
-const PostUpdateComponent = ({ postId }) => {
+const PostUpdateComponent = ({ boardId, postId }) => {
   const [inItTitle, setInItTitle] = useState('');
   const [inItContent, setInItContent] = useState('');
-  const { postDetails, status, error } = useSelector(
+  const { postDetails, getStatus, updateStatus, error } = useSelector(
     (state) => state.postUpdate
   );
 
+  console.log('boardId2 : ' + boardId);
+  console.log('postId2 : ' + postId);
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  if (updateStatus === 'succeeded') {
+    console.log('동작함');
+    dispatch(postUpdateSliceResetState());
+    navigate(`/boards/${boardId}/posts/${postId}`);
+  }
 
   // 게시글 수정 작업이니 기존 데이터를 가져오는 작업
   useEffect(() => {
@@ -52,7 +63,7 @@ const PostUpdateComponent = ({ postId }) => {
         inItTitle={inItTitle}
         inItContent={inItContent}
         onSubmit={submitHandler}
-        status={status}
+        status={updateStatus}
         error={error}
       />
     </div>
