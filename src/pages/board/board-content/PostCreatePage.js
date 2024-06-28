@@ -1,11 +1,16 @@
 import React from 'react';
-import PostFormEditorComponent from '../../../components/board/post/PostFormEditorComponent';
+import PostCreateComponent from '../../../components/board/post/PostCreateComponent';
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const PostCreatePage = () => {
+  const { boardId } = useParams();
+  const { pageNum } = useSelector((state) => state.postList);
+
   return (
     <div>
       <h1>게시글 작성 페이지</h1>
-      <PostFormEditorComponent />
+      <PostCreateComponent boardId={boardId} pageNum={pageNum} />
     </div>
   );
 };

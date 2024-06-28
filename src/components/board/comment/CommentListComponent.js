@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Pagination from '../../common/Pagination';
 
 import commentListByPostId from '../../../features/board/comment/actions/CommentListAction';
+import CommentDetailsComponent from './CommentDetailsComponent';
 
 const CommentListComponent = ({ postId }) => {
   const dispatch = useDispatch();
@@ -10,6 +11,12 @@ const CommentListComponent = ({ postId }) => {
   const { commentList, totalPage, pageNum, status, error } = useSelector(
     (state) => state.commentList
   );
+
+  const { status: commentCreateStatus } = useSelector(
+    (state) => state.commentCreate
+  );
+
+  console.log('commentCreateStatus : ' + commentCreateStatus);
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -20,13 +27,13 @@ const CommentListComponent = ({ postId }) => {
         queryData: { pageNum: currentPage, dataPerPage: 10 },
       })
     );
-  }, [currentPage]);
+  }, [currentPage, commentCreateStatus]);
 
   if (status === 'idle') {
     return <div>Loading... 데이터를 요청합니다.</div>;
   }
 
-  if (status === 'loading') {
+  if (status === 'loading' || commentCreateStatus === 'loading') {
     return <div>Loading... 데이터를 불러오고 있습니다.</div>;
   }
 
@@ -47,11 +54,11 @@ const CommentListComponent = ({ postId }) => {
         </thead>
         <tbody>
           {commentList.map((comment) => (
-            <tr key={comment.id}>
-              <td>{comment.id}</td>
-              <td>{comment.content}</td>
-              <td>{new Date(comment.created_at).toLocaleString()}</td>
-            </tr>
+            <CommentDetailsComponent
+              commentId={comment.id}
+              commentContent={comment.content}
+              commentCreatedAt={comment.created_at}
+            />
           ))}
         </tbody>
       </table>

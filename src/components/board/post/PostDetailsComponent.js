@@ -34,8 +34,6 @@ const PostDetailsComponent = ({ postId }) => {
 
   const decodedContent = htmlDecoder(postDetails.content);
 
-  console.log('decodedContent:', decodedContent);
-
   return (
     <div>
       <div>
