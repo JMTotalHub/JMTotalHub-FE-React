@@ -1,15 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import QuillEditor from '../../common/QuillEditor';
 
 const PostFormComponent = ({
-  title,
-  content,
-  onTitleChange,
-  onContentChange,
+  inItTitle = '',
+  inItContent = '',
+  // onTitleChange,
+  // onContentChange,
   onSubmit,
   status,
   error,
 }) => {
+  const [title, setTitle] = useState(inItTitle);
+  const [content, setContent] = useState(inItContent);
+
+  useEffect(() => {
+    setTitle(inItTitle);
+  }, [inItTitle]);
+
+  useEffect(() => {
+    setContent(inItContent);
+  }, [inItContent]);
+
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const handleContentChange = (value) => {
+    setContent(value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit({ title, content });
+  };
+
   if (status === 'loading') {
     return <div>Loading... 데이터를 저장하고 있습니다.</div>;
   }
@@ -19,20 +43,18 @@ const PostFormComponent = ({
     return <div>Error: 게시글 데이터를 저장하지 못했습니다.</div>;
   }
 
-  // if (status === 'succeeded') {
-  //   console.log('api 통신 에러 : ' + error);
-  //   navigate(`/boards/${boardId}/posts?page=${pageNum}`);
-  // }
-
   return (
-    <form onSubmit={onSubmit}>
-      <div>
-        <label>제목:</label>
-        <input type="text" value={title} onChange={onTitleChange} />
-      </div>
-      <QuillEditor value={content} onChange={onContentChange} />
-      <button type="submit">저장</button>
-    </form>
+    <div>
+      <h3>폼 부분</h3>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>제목:</label>
+          <input type="text" value={title} onChange={handleTitleChange} />
+        </div>
+        <QuillEditor value={content} onChange={handleContentChange} />
+        <button type="submit">저장</button>
+      </form>
+    </div>
   );
 };
 
