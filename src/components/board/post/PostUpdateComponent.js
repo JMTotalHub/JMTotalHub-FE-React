@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import postUpdateInitByPostId from '../../../features/board/post/actions/PostUpdateInitAction';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,8 +7,8 @@ import PostFormComponent from './PostFormComponent';
 import { htmlDecoder } from '../../../utils/htmlDecoder';
 
 const PostUpdateComponent = ({ postId }) => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [inItTitle, setInItTitle] = useState('');
+  const [inItContent, setInItContent] = useState('');
   const { postDetails, status, error } = useSelector(
     (state) => state.postUpdate
   );
@@ -25,36 +25,30 @@ const PostUpdateComponent = ({ postId }) => {
 
   useEffect(() => {
     if (postDetails) {
-      setTitle(postDetails.title);
+      setInItTitle(postDetails.title);
       const decodedContent = htmlDecoder(postDetails.content || '');
-      setContent(decodedContent);
+      setInItContent(decodedContent);
     }
   }, [postDetails]);
 
-  const submitHandler = (e) => {
-    dispatch(
-      postUpdateByPostIdAndData({
-        postId,
-        bodyData: { title, content },
-      })
-    );
-  };
-
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value);
-  };
-
-  const handleContentChange = (value) => {
-    setContent(value);
-  };
+  const submitHandler = useCallback(
+    ({ title, content }) => {
+      dispatch(
+        postUpdateByPostIdAndData({
+          postId,
+          bodyData: { title, content },
+        })
+      );
+    },
+    [dispatch, postId]
+  );
 
   return (
     <div>
+      <h3>수정 컴포넌트</h3>
       <PostFormComponent
-        title={title}
-        content={content}
-        onTitleChange={handleTitleChange}
-        onContentChange={handleContentChange}
+        inItTitle={inItTitle}
+        inItContent={inItContent}
         onSubmit={submitHandler}
         status={status}
         error={error}

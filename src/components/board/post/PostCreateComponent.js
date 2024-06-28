@@ -6,8 +6,6 @@ import PostFormComponent from './PostFormComponent';
 import { postCreateSliceResetState } from '../../../features/board/post/slices/postCreateSlice';
 
 const PostCreateComponent = ({ boardId, pageNum }) => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
   const { status, error } = useSelector((state) => state.postCreate);
 
   const dispatch = useDispatch();
@@ -19,8 +17,7 @@ const PostCreateComponent = ({ boardId, pageNum }) => {
   }
 
   const submitHandler = useCallback(
-    (e) => {
-      e.preventDefault();
+    ({ title, content }) => {
       dispatch(
         postCreateByBoardIdAndData({
           boardId,
@@ -28,24 +25,13 @@ const PostCreateComponent = ({ boardId, pageNum }) => {
         })
       );
     },
-    [title, content]
+    [dispatch, boardId]
   );
-
-  const handleTitleChange = useCallback((e) => {
-    setTitle(e.target.value);
-  }, []);
-
-  const handleContentChange = useCallback((value) => {
-    setContent(value);
-  }, []);
 
   return (
     <div>
+      <h3>작성 컴포넌트</h3>
       <PostFormComponent
-        title={title}
-        content={content}
-        onTitleChange={handleTitleChange}
-        onContentChange={handleContentChange}
         onSubmit={submitHandler}
         status={status}
         error={error}
