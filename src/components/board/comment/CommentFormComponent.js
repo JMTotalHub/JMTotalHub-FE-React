@@ -19,7 +19,7 @@ const CommentFormComponent = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(content);
+    onSubmit({ content });
     setContent(''); // 제출 후 내용 초기화
   };
 

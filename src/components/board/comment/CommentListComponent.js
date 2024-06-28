@@ -12,6 +12,12 @@ const CommentListComponent = ({ postId }) => {
     (state) => state.commentList
   );
 
+  const { status: commentCreateStatus } = useSelector(
+    (state) => state.commentCreate
+  );
+
+  console.log('commentCreateStatus : ' + commentCreateStatus);
+
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
@@ -21,13 +27,13 @@ const CommentListComponent = ({ postId }) => {
         queryData: { pageNum: currentPage, dataPerPage: 10 },
       })
     );
-  }, [currentPage]);
+  }, [currentPage, commentCreateStatus]);
 
   if (status === 'idle') {
     return <div>Loading... 데이터를 요청합니다.</div>;
   }
 
-  if (status === 'loading') {
+  if (status === 'loading' || commentCreateStatus === 'loading') {
     return <div>Loading... 데이터를 불러오고 있습니다.</div>;
   }
 
@@ -53,11 +59,6 @@ const CommentListComponent = ({ postId }) => {
               commentContent={comment.content}
               commentCreatedAt={comment.created_at}
             />
-            // <tr key={comment.id}>
-            //   <td>{comment.id}</td>
-            //   <td>{comment.content}</td>
-            //   <td>{new Date(comment.created_at).toLocaleString()}</td>
-            // </tr>
           ))}
         </tbody>
       </table>

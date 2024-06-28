@@ -8,11 +8,9 @@ const CommentCreateComponent = ({ postId }) => {
   const { status, error } = useSelector((state) => state.commentCreate);
 
   const dispatch = useDispatch();
-  //   const navigate = useNavigate();
 
   if (status === 'succeeded') {
     dispatch(commentCreateSliceResetState());
-    // navigate(`/boards/${boardId}/posts?page=${pageNum}`);
   }
 
   const submitHandler = useCallback(
@@ -29,7 +27,7 @@ const CommentCreateComponent = ({ postId }) => {
 
   return (
     <div>
-      <h3>작성 컴포넌트</h3>
+      <h3>댓글작성 컴포넌트</h3>
       <CommentFormComponent
         onSubmit={submitHandler}
         status={status}
