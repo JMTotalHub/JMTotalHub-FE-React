@@ -5,7 +5,13 @@ const CommentDetailsComponent = ({
   commentContent,
   commentCreatedAt,
 }) => {
-  return <div>CommentDetailsComponent</div>;
+  return (
+    <tr key={commentId}>
+      <td>{commentId}</td>
+      <td>{commentContent}</td>
+      <td>{new Date(commentCreatedAt).toLocaleString()}</td>
+    </tr>
+  );
 };
 
 export default CommentDetailsComponent;

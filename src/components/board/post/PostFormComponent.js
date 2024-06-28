@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import QuillEditor from '../../common/QuillEditor';
 
 const PostFormComponent = ({
-  inItTitle = '',
   inItContent = '',
   // onTitleChange,
   // onContentChange,
@@ -10,20 +9,11 @@ const PostFormComponent = ({
   status,
   error,
 }) => {
-  const [title, setTitle] = useState(inItTitle);
   const [content, setContent] = useState(inItContent);
-
-  useEffect(() => {
-    setTitle(inItTitle);
-  }, [inItTitle]);
 
   useEffect(() => {
     setContent(inItContent);
   }, [inItContent]);
-
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value);
-  };
 
   const handleContentChange = (value) => {
     setContent(value);
@@ -31,7 +21,7 @@ const PostFormComponent = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ title, content });
+    onSubmit({ content });
   };
 
   if (status === 'loading') {
@@ -47,10 +37,6 @@ const PostFormComponent = ({
     <div>
       <h3>폼 부분</h3>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>제목:</label>
-          <input type="text" value={title} onChange={handleTitleChange} />
-        </div>
         <QuillEditor value={content} onChange={handleContentChange} />
         <button type="submit">저장</button>
       </form>

@@ -9,7 +9,13 @@ const CommentCreateSlice = createSlice({
     status: 'idle',
     error: null,
   },
-  reducers: {},
+  reducers: {
+    commentCreateSliceResetState: (state) => {
+      state.commentDetails = {};
+      state.status = 'idle';
+      state.error = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(commentCreateByPostIdAndData.pending, (state) => {
@@ -26,4 +32,5 @@ const CommentCreateSlice = createSlice({
   },
 });
 
+export const { commentCreateSliceResetState } = CommentCreateSlice.actions;
 export default CommentCreateSlice.reducer;

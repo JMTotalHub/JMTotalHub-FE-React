@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import QuillEditor from '../../common/QuillEditor';
 
-const CommentCreateComponent = ({
+const CommentFormComponent = ({
   initContent = '',
   onSubmit,
   status,
@@ -33,10 +34,14 @@ const CommentCreateComponent = ({
 
   return (
     <form onSubmit={handleSubmit}>
-      <QuillEditor value={content} onChange={handleContentChange} />
+      <QuillEditor
+        value={content}
+        onChange={handleContentChange}
+        modules={{ toolbar: false }}
+      />
       <button type="submit">댓글 작성</button>
     </form>
   );
 };
 
-export default CommentCreateComponent;
+export default CommentFormComponent;

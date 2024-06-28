@@ -5,6 +5,7 @@ import CommentListComponent from '../../../components/board/comment/CommentListC
 import PostDetailsComponent from '../../../components/board/post/PostDetailsComponent';
 import { useSelector } from 'react-redux';
 import PostDeleteButtonComponent from '../../../components/board/post/PostDeleteButtonComponent';
+import CommentCreateComponent from '../../../components/board/comment/CommentCreateComponent';
 
 const PostDetailsPage = () => {
   const { boardId, postId } = useParams();
@@ -23,6 +24,7 @@ const PostDetailsPage = () => {
         postId={postId}
         pageNum={pageNum}
       />
+      <CommentCreateComponent postId={postId}></CommentCreateComponent>
       <CommentListComponent postId={postId}></CommentListComponent>
     </>
   );
