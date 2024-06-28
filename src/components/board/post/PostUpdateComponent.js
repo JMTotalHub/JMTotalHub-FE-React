@@ -15,6 +15,7 @@ const PostUpdateComponent = ({ postId }) => {
 
   const dispatch = useDispatch();
 
+  // 게시글 수정 작업이니 기존 데이터를 가져오는 작업
   useEffect(() => {
     dispatch(
       postUpdateInitByPostId({
@@ -23,6 +24,7 @@ const PostUpdateComponent = ({ postId }) => {
     );
   }, []);
 
+  // 기존데이터 가져오는 작업이 끝나 store(slice)에 정보가 최신화되면 가져와 초기값을  form컴포넌트에 전달
   useEffect(() => {
     if (postDetails) {
       setInItTitle(postDetails.title);
