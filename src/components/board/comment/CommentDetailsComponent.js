@@ -9,11 +9,11 @@ const CommentDetailsComponent = ({
   const decodedContent = htmlDecoder(commentContent);
 
   return (
-    <tr key={commentId}>
+    <>
       <td>{commentId}</td>
       <td dangerouslySetInnerHTML={{ __html: decodedContent }}></td>
       <td>{new Date(commentCreatedAt).toLocaleString()}</td>
-    </tr>
+    </>
   );
 };
 
