@@ -4,6 +4,17 @@ import { Link, useSearchParams } from 'react-router-dom';
 import postListByBoardId from '../../../features/board/post/actions/PostListAction';
 import Pagination from '../../common/Pagination';
 
+import {
+  Table,
+  TableHead,
+  TableHeadCell,
+  TableCell,
+  TableRow,
+  IdColumn,
+  TitleColumn,
+  CreatedAtColumn,
+} from './styles/PostListStyles'; // 스타일 컴포넌트 임포트
+
 const PostsListComponent = ({ boardId }) => {
   const dispatch = useDispatch();
   const { postList, totalPage, pageNum, status, error } = useSelector(
@@ -20,6 +31,34 @@ const PostsListComponent = ({ boardId }) => {
   const handlePageNum = (page) => {
     setSearchParams({ page });
     setCurrentPage(page);
+  };
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const today = new Date();
+    const isToday = date.toDateString() === today.toDateString();
+
+    if (isToday) {
+      return (
+        '당일 ' +
+        date.toLocaleTimeString('ko-KR', {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false, // 24시간제로 설정
+        })
+      );
+    } else {
+      // toLocaleDateString 사용 후 마지막 마침표 제거
+      let formattedDate = date.toLocaleDateString('ko-KR', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      });
+      if (formattedDate.endsWith('.')) {
+        formattedDate = formattedDate.slice(0, -1);
+      }
+      return formattedDate;
+    }
   };
 
   useEffect(() => {
@@ -47,26 +86,34 @@ const PostsListComponent = ({ boardId }) => {
 
   return (
     <div>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>제목</th>
-            <th>생성 시간</th>
-          </tr>
-        </thead>
+      <Table>
+        <colgroup>
+          <IdColumn />
+          <TitleColumn />
+          <CreatedAtColumn />
+        </colgroup>
+        <TableHead>
+          <TableRow>
+            <TableHeadCell>ID</TableHeadCell>
+            <TableHeadCell>제목</TableHeadCell>
+            <TableHeadCell>작성일</TableHeadCell>
+          </TableRow>
+        </TableHead>
         <tbody>
           {postList.map((post) => (
-            <tr key={post.id}>
-              <td>{post.id}</td>
-              <td>
+            <TableRow key={post.id}>
+              <TableCell>{post.id}</TableCell>
+              <TableCell>
                 <Link to={`${post.id}`}>{post.title}</Link>
-              </td>
-              <td>{new Date(post.created_at).toLocaleString()}</td>
-            </tr>
+              </TableCell>
+              <TableCell>
+                {/* {new Date(post.created_at).toLocaleString()} */}
+                {formatDate(post.created_at)}
+              </TableCell>
+            </TableRow>
           ))}
         </tbody>
-      </table>
+      </Table>
       <Pagination
         totalPage={totalPage}
         currentPage={currentPage}
