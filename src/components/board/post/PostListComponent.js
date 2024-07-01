@@ -5,6 +5,7 @@ import postListByBoardId from '../../../features/board/post/actions/PostListActi
 import Pagination from '../../common/Pagination';
 
 import {
+  Container,
   Table,
   TableHead,
   TableHeadCell,
@@ -85,7 +86,7 @@ const PostsListComponent = ({ boardId }) => {
   }
 
   return (
-    <div>
+    <Container>
       <Table>
         <colgroup>
           <IdColumn />
@@ -119,7 +120,7 @@ const PostsListComponent = ({ boardId }) => {
         currentPage={currentPage}
         onPageChange={handlePageNum}
       />
-    </div>
+    </Container>
   );
 };
 

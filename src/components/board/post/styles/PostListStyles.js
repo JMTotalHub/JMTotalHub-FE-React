@@ -1,14 +1,22 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+  width: 95%;
+  margin: 0 auto;
+  padding: 0.2rem;
+
+  flex-direction: column;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+  }
+`;
+
 export const Table = styled.table`
-  width: 90%;
+  width: 100%;
   border-collapse: collapse;
   margin: 1rem auto;
-  /* @media screen and (max-width: 768px) {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-  } */
 `;
 
 export const TableHead = styled.thead`
