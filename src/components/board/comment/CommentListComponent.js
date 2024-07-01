@@ -6,6 +6,19 @@ import commentListByPostId from '../../../features/board/comment/actions/Comment
 import CommentDetailsComponent from './CommentDetailsComponent';
 import CommentDeleteByCommentId from '../../../features/board/comment/actions/CommentDeleteAction';
 
+import {
+  Table,
+  TableHead,
+  TableHeadCell,
+  TableRow,
+  TableCell,
+  DeleteButton,
+  IdColumn,
+  ContentColumn,
+  CreatedAtColumn,
+  ButtonColumn,
+} from './styles/CommentListStyles';
+
 const CommentListComponent = ({ postId }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -52,30 +65,38 @@ const CommentListComponent = ({ postId }) => {
 
   return (
     <div>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>제목</th>
-            <th>생성 시간</th>
-            <th></th>
-          </tr>
-        </thead>
+      <Table>
+        <colgroup>
+          <IdColumn />
+          <ContentColumn />
+          <CreatedAtColumn />
+          <ButtonColumn />
+        </colgroup>
+        <TableHead>
+          <TableRow>
+            <TableHeadCell>ID</TableHeadCell>
+            <TableHeadCell>내용</TableHeadCell>
+            <TableHeadCell>생성 시간</TableHeadCell>
+            <TableHeadCell></TableHeadCell>
+          </TableRow>
+        </TableHead>
         <tbody>
           {commentList.map((comment) => (
-            <tr key={comment.id}>
+            <TableRow key={comment.id}>
               <CommentDetailsComponent
                 commentId={comment.id}
                 commentContent={comment.content}
                 commentCreatedAt={comment.created_at}
               />
-              <td>
-                <button onClick={() => handleDelete(comment.id)}>삭제</button>
-              </td>
-            </tr>
+              <TableCell>
+                <DeleteButton onClick={() => handleDelete(comment.id)}>
+                  삭제
+                </DeleteButton>
+              </TableCell>
+            </TableRow>
           ))}
         </tbody>
-      </table>
+      </Table>
       <Pagination
         totalPage={totalPage}
         currentPage={currentPage}

@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import PostDeleteActionByPostId from '../../../features/board/post/actions/PostDeleteAction';
 import { postDeleteSliceResetState } from '../../../features/board/post/slices/PostDeleteSlice';
 
+import { BoardButton } from '../../../styles/commonButtonStyles';
+
 const PostDeleteButtonComponent = ({ boardId, postId, pageNum }) => {
   const { status, error } = useSelector((state) => state.postDelete);
   const dispatch = useDispatch();
@@ -29,7 +31,7 @@ const PostDeleteButtonComponent = ({ boardId, postId, pageNum }) => {
     return <div>Error: 게시글 데이터를 삭제하지 못했습니다.</div>;
   }
 
-  return <button onClick={handleDelete}>삭제</button>;
+  return <BoardButton onClick={handleDelete}>삭제</BoardButton>;
 };
 
 export default PostDeleteButtonComponent;

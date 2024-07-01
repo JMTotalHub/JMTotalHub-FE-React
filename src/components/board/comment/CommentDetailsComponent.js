@@ -1,6 +1,8 @@
 import React from 'react';
 import { htmlDecoder } from '../../../utils/htmlDecoder';
 
+import { TableCell } from './styles/CommentListStyles';
+
 const CommentDetailsComponent = ({
   commentId,
   commentContent,
@@ -10,9 +12,11 @@ const CommentDetailsComponent = ({
 
   return (
     <>
-      <td>{commentId}</td>
-      <td dangerouslySetInnerHTML={{ __html: decodedContent }}></td>
-      <td>{new Date(commentCreatedAt).toLocaleString()}</td>
+      <TableCell>{commentId}</TableCell>
+      <TableCell
+        dangerouslySetInnerHTML={{ __html: decodedContent }}
+      ></TableCell>
+      <TableCell>{new Date(commentCreatedAt).toLocaleString()}</TableCell>
     </>
   );
 };
