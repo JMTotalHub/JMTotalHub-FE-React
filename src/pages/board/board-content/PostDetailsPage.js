@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import CommentListComponent from '../../../components/board/comment/CommentListComponent';
-import PostDetailsComponent from '../../../components/board/post/PostDetailsComponent';
 import { useSelector } from 'react-redux';
-import PostDeleteButtonComponent from '../../../components/board/post/PostDeleteButtonComponent';
 import CommentCreateComponent from '../../../components/board/comment/CommentCreateComponent';
+import CommentListComponent from '../../../components/board/comment/CommentListComponent';
+import PostDeleteButtonComponent from '../../../components/board/post/PostDeleteButtonComponent';
+import PostDetailsComponent from '../../../components/board/post/PostDetailsComponent';
 
 import {
   BoardButton,
@@ -13,6 +13,8 @@ import {
   LeftButtonGroup,
   RightButtonGroup,
 } from '../../../styles/commonButtonStyles';
+
+import { Container } from './styles/PostDetailsStyles';
 
 const PostDetailsPage = () => {
   const { boardId, postId } = useParams();
@@ -31,7 +33,7 @@ const PostDetailsPage = () => {
   };
 
   return (
-    <>
+    <Container>
       <PostDetailsComponent postId={postId}></PostDetailsComponent>
       <ButtonContainer>
         <LeftButtonGroup>
@@ -49,7 +51,7 @@ const PostDetailsPage = () => {
 
       <CommentCreateComponent postId={postId}></CommentCreateComponent>
       <CommentListComponent postId={postId}></CommentListComponent>
-    </>
+    </Container>
   );
 };
 

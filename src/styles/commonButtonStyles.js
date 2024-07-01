@@ -1,5 +1,13 @@
 import styled from 'styled-components';
 
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between; /* 왼쪽과 오른쪽 끝으로 배치 */
+  align-items: center;
+
+  margin: 1rem;
+`;
+
 export const BoardButton = styled.button`
   font-weight: bold;
   color: white;
@@ -22,14 +30,6 @@ export const BoardButton = styled.button`
   &:hover {
     background-color: #0056b3;
   }
-`;
-
-export const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: space-between; /* 왼쪽과 오른쪽 끝으로 배치 */
-  align-items: center;
-
-  margin: 1rem;
 `;
 
 export const LeftButtonGroup = styled.div`

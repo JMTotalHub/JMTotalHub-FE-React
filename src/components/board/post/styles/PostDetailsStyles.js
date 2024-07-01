@@ -1,23 +1,20 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 95%;
-  margin: 1rem auto;
-  padding: 1rem;
+  width: 100%;
 
   background-color: #fff;
 
-  border: solid 0.2rem rgba(0, 0, 0, 0.2);
-  border-radius: 2rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: solid 0.1rem rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.1);
 `;
 
 export const Row = styled.div`
   display: flex;
   justify-content: space-between;
 
-  margin-bottom: 0.1rem;
-  padding: 0.5rem 0;
+  padding: 1rem 0;
 
   border-bottom: 0.1rem solid #ccc;
 
@@ -60,5 +57,5 @@ export const Value = styled.span`
 `;
 
 export const Content = styled.div`
-  margin-top: 0.2rem;
+  padding: 0 1rem;
 `;
