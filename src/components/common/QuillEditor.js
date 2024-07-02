@@ -3,7 +3,7 @@ import 'react-quill/dist/quill.snow.css';
 
 import React from 'react';
 
-const QuillEditor = ({ value, onChange, modules, formats }) => {
+const QuillEditor = ({ value, onChange, modules, formats, style }) => {
   const defaultModules = {
     toolbar: [
       [{ header: '1' }, { header: '2' }, { font: [] }],
@@ -37,7 +37,7 @@ const QuillEditor = ({ value, onChange, modules, formats }) => {
     'video',
   ];
   return (
-    <div>
+    <div style={style}>
       <ReactQuill
         value={value}
         onChange={onChange}

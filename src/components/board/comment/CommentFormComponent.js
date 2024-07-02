@@ -43,10 +43,15 @@ const CommentFormComponent = ({
         value={content}
         onChange={handleContentChange}
         modules={{ toolbar: false }}
+        style={{ hight: '5rem' }}
       />
       <ButtonContainer>
         <RightButtonGroup>
-          <BoardButton type="submit">댓글 작성</BoardButton>
+          {(initContent !== null) & (initContent !== '') ? (
+            <BoardButton type="submit">댓글수정</BoardButton>
+          ) : (
+            <BoardButton type="submit">댓글작성</BoardButton>
+          )}
         </RightButtonGroup>
       </ButtonContainer>
     </form>

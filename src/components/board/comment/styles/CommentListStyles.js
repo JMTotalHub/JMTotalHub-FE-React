@@ -50,6 +50,18 @@ export const ButtonColumn = styled.col`
   width: 15%;
 `;
 
+export const UpdateButton = styled.button`
+  background-color: #3e4dd5;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #283ceb;
+  }
+`;
+
 export const DeleteButton = styled.button`
   background-color: #ff4d4d;
   color: white;

@@ -12,6 +12,7 @@ import {
   ButtonColumn,
   ContentColumn,
   CreatedAtColumn,
+  UpdateButton,
   DeleteButton,
   IdColumn,
   Table,
@@ -136,7 +137,9 @@ const CommentListComponent = ({ postId }) => {
                 ) : (
                   // 댓글 업데이트 모드 아님
                   <>
-                    <button onClick={() => handleEdit(comment.id)}>수정</button>
+                    <UpdateButton onClick={() => handleEdit(comment.id)}>
+                      수정
+                    </UpdateButton>
                     <DeleteButton onClick={() => handleDelete(comment.id)}>
                       삭제
                     </DeleteButton>
