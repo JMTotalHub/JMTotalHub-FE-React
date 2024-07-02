@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const Table = styled.table`
-  width: 95%;
+  width: 100%;
 
   margin: 1rem auto;
 
   border-collapse: collapse;
 
-  table-layout: fixed; /* 고정된 테이블 레이아웃 */
+  /* table-layout: fixed;  */
 `;
 
 export const TableHead = styled.thead`
@@ -34,29 +34,32 @@ export const TableCell = styled.td`
   overflow: hidden; /* 넘치는 텍스트를 숨김 */
 `;
 
-// export const TableCell = styled.td`
-//   padding: 0 0.5rem;
-
-//   white-space: nowrap; /* 텍스트를 한 줄로 유지 */
-//   overflow: hidden; /* 넘치는 텍스트를 숨김 */
-//   text-overflow: ellipsis; /* 넘치는 텍스트를 '...'로 표시 */
-//   max-width: 10rem; /* 최대 너비 설정 (필요에 따라 조정) */
-// `;
-
 export const IdColumn = styled.col`
-  width: 7%;
+  width: 5%;
 `;
 
 export const ContentColumn = styled.col`
-  width: 75%;
+  width: 65%;
 `;
 
 export const CreatedAtColumn = styled.col`
-  width: 10%;
+  width: 15%;
 `;
 
 export const ButtonColumn = styled.col`
-  width: 10%;
+  width: 15%;
+`;
+
+export const UpdateButton = styled.button`
+  background-color: #3e4dd5;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #283ceb;
+  }
 `;
 
 export const DeleteButton = styled.button`

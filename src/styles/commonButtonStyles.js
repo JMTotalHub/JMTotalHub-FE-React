@@ -1,5 +1,13 @@
 import styled from 'styled-components';
 
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between; /* 왼쪽과 오른쪽 끝으로 배치 */
+  align-items: center;
+
+  margin: 0.2rem;
+`;
+
 export const BoardButton = styled.button`
   font-weight: bold;
   color: white;
@@ -10,8 +18,8 @@ export const BoardButton = styled.button`
 
   background-color: RGBA(91, 160, 202, 0.85);
 
-  padding: 0.5rem 0.8rem;
-  margin: 0.3rem;
+  padding: 0.4rem 0.6rem;
+  margin: 0.1rem;
 
   display: inline-block;
 
@@ -24,14 +32,6 @@ export const BoardButton = styled.button`
   }
 `;
 
-export const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: space-between; /* 왼쪽과 오른쪽 끝으로 배치 */
-  align-items: center;
-
-  margin: 1rem;
-`;
-
 export const LeftButtonGroup = styled.div`
   display: flex;
   gap: 0.2rem; /* 버튼 사이의 간격 */
@@ -39,5 +39,6 @@ export const LeftButtonGroup = styled.div`
 
 export const RightButtonGroup = styled.div`
   display: flex;
+  margin-left: auto;
   gap: 0.2rem; /* 버튼 사이의 간격 */
 `;

@@ -3,6 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import boardListByNothing from '../../../features/board/board/actions/BoardListAction';
 import { Link } from 'react-router-dom';
 
+import {
+  Table,
+  TableHead,
+  TableHeadCell,
+  TableRow,
+  TableCell,
+  IdColumn,
+  NameColumn,
+  DescriptionColumn,
+  // CreatedAtColumn,
+} from './styles/BoardListStyles';
+
 const BoardListComponent = () => {
   const dispatch = useDispatch();
   const { boardList, status, error } = useSelector((state) => state.boardList);
@@ -26,26 +38,33 @@ const BoardListComponent = () => {
 
   return (
     <div>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>이름</th>
-            <th>생성 시간</th>
-          </tr>
-        </thead>
+      <Table>
+        <colgroup>
+          <IdColumn />
+          <NameColumn />
+          <DescriptionColumn />
+        </colgroup>
+        <TableHead>
+          <TableRow>
+            <TableHeadCell>ID</TableHeadCell>
+            <TableHeadCell>이름</TableHeadCell>
+            <TableHeadCell>설명</TableHeadCell>
+            {/* <th>생성 시간</th> */}
+          </TableRow>
+        </TableHead>
         <tbody>
           {boardList.map((board) => (
-            <tr key={board.id}>
-              <td>{board.id}</td>
-              <td>
+            <TableRow key={board.id}>
+              <TableCell>{board.id}</TableCell>
+              <TableCell>
                 <Link to={`${board.id}/posts`}>{board.name}</Link>
-              </td>
-              <td>{new Date(board.created_at).toLocaleString()}</td>
-            </tr>
+              </TableCell>
+              <TableCell>{board.description}</TableCell>
+              {/* <td>{new Date(board.created_at).toLocaleString()}</td> */}
+            </TableRow>
           ))}
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 };

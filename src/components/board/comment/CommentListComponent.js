@@ -2,44 +2,61 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Pagination from '../../common/Pagination';
 
+import CommentDeleteByCommentId from '../../../features/board/comment/actions/CommentDeleteAction';
 import commentListByPostId from '../../../features/board/comment/actions/CommentListAction';
 import CommentDetailsComponent from './CommentDetailsComponent';
-import CommentDeleteByCommentId from '../../../features/board/comment/actions/CommentDeleteAction';
 
+import { commentUpdateSliceResetState } from '../../../features/board/comment/slices/CommentUpdateSlice';
+import CommentUpdateComponent from './CommentUpdateComponent';
 import {
+  ButtonColumn,
+  ContentColumn,
+  CreatedAtColumn,
+  UpdateButton,
+  DeleteButton,
+  IdColumn,
   Table,
+  TableCell,
   TableHead,
   TableHeadCell,
   TableRow,
-  TableCell,
-  DeleteButton,
-  IdColumn,
-  ContentColumn,
-  CreatedAtColumn,
-  ButtonColumn,
 } from './styles/CommentListStyles';
 
 const CommentListComponent = ({ postId }) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [editCommentId, setEditCommentId] = useState(null);
 
   const dispatch = useDispatch();
 
+  // 댓글 목록
   const { commentList, totalPage, pageNum, status, error } = useSelector(
     (state) => state.commentList
   );
 
+  // 댓글 생성 상태
   const { status: commentCreateStatus } = useSelector(
     (state) => state.commentCreate
   );
 
+  // 댓글 업데이트 상태
+  const { updateStatus: commentUpdateStatus } = useSelector(
+    (state) => state.commentUpdate
+  );
+
+  // 댓글 삭제 상태
   const { status: commentDeleteStatus } = useSelector(
     (state) => state.commentDelete
   );
 
+  const handleEdit = (commentId) => {
+    setEditCommentId(commentId);
+  };
+
   const handleDelete = (commentId) => {
-    console.log('commentId : ' + commentId);
     dispatch(CommentDeleteByCommentId({ commentId }));
   };
+
+  useEffect(() => {}, []);
 
   useEffect(() => {
     dispatch(
@@ -48,7 +65,16 @@ const CommentListComponent = ({ postId }) => {
         queryData: { pageNum: currentPage, dataPerPage: 10 },
       })
     );
-  }, [currentPage, commentCreateStatus, commentDeleteStatus]);
+    if (commentUpdateStatus === 'succeeded') {
+      setEditCommentId(null);
+    }
+  }, [
+    // 댓글 페이지 변경 & 댓글 생성, 업데이트, 삭제 로직에 다시 랜더링
+    currentPage,
+    commentCreateStatus,
+    commentUpdateStatus,
+    commentDeleteStatus,
+  ]);
 
   if (status === 'idle') {
     return <div>Loading... 데이터를 요청합니다.</div>;
@@ -76,22 +102,49 @@ const CommentListComponent = ({ postId }) => {
           <TableRow>
             <TableHeadCell>ID</TableHeadCell>
             <TableHeadCell>내용</TableHeadCell>
-            <TableHeadCell>생성 시간</TableHeadCell>
+            <TableHeadCell>생성일</TableHeadCell>
             <TableHeadCell></TableHeadCell>
           </TableRow>
         </TableHead>
         <tbody>
           {commentList.map((comment) => (
             <TableRow key={comment.id}>
-              <CommentDetailsComponent
-                commentId={comment.id}
-                commentContent={comment.content}
-                commentCreatedAt={comment.created_at}
-              />
+              {editCommentId === comment.id ? (
+                // 댓글 업데이트 모드 상태(editCommentId 값이 있음)
+                <>
+                  <CommentDetailsComponent
+                    commentId={comment.id}
+                    commentContent={
+                      <CommentUpdateComponent commentId={comment.id} />
+                    }
+                    commentCreatedAt={comment.created_at}
+                  />
+                </>
+              ) : (
+                // 댓글 업데이트 모드 아님
+                <CommentDetailsComponent
+                  commentId={comment.id}
+                  commentContent={comment.content}
+                  commentCreatedAt={comment.created_at}
+                />
+              )}
               <TableCell>
-                <DeleteButton onClick={() => handleDelete(comment.id)}>
-                  삭제
-                </DeleteButton>
+                {editCommentId === comment.id ? (
+                  // 댓글 업데이트 모드(editCommentId 값이 있음)
+                  <button onClick={() => setEditCommentId(null)}>
+                    수정취소
+                  </button>
+                ) : (
+                  // 댓글 업데이트 모드 아님
+                  <>
+                    <UpdateButton onClick={() => handleEdit(comment.id)}>
+                      수정
+                    </UpdateButton>
+                    <DeleteButton onClick={() => handleDelete(comment.id)}>
+                      삭제
+                    </DeleteButton>
+                  </>
+                )}
               </TableCell>
             </TableRow>
           ))}

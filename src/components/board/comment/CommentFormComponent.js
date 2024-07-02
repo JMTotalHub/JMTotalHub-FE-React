@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import QuillEditor from '../../common/QuillEditor';
+import {
+  ButtonContainer,
+  BoardButton,
+  RightButtonGroup,
+} from '../../../styles/commonButtonStyles';
 
 const CommentFormComponent = ({
   initContent = '',
@@ -38,8 +43,17 @@ const CommentFormComponent = ({
         value={content}
         onChange={handleContentChange}
         modules={{ toolbar: false }}
+        style={{ hight: '5rem' }}
       />
-      <button type="submit">댓글 작성</button>
+      <ButtonContainer>
+        <RightButtonGroup>
+          {(initContent !== null) & (initContent !== '') ? (
+            <BoardButton type="submit">댓글수정</BoardButton>
+          ) : (
+            <BoardButton type="submit">댓글작성</BoardButton>
+          )}
+        </RightButtonGroup>
+      </ButtonContainer>
     </form>
   );
 };
