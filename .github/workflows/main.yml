@@ -37,7 +37,7 @@ jobs:
         username: ${{ secrets.EC2_USERNAME }}
         key: ${{ secrets.EC2_PRIVATE_KEY }}
         script: |
-          docker image prune -a --filter "until=12h"
+          docker image prune -a -f --filter "until=12h"
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           export REACT_APP_ENV=${{ secrets.REACT_APP_ENV }}
           export REACT_APP_SERVER_IP=${{ secrets.REACT_APP_SERVER_IP }}
