@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import QuillEditor from '../../common/QuillEditor';
 
-import { Container, TitleInput, Form } from './styles/PostCreateStyles';
+import {
+  Container,
+  TitleInput,
+  ContentContainer,
+  Form,
+} from './styles/PostCreateStyles';
 import {
   BoardButton,
   ButtonContainer,
@@ -35,6 +40,7 @@ const PostFormComponent = ({
   };
 
   const handleSubmit = (e) => {
+    console.log('저장버튼!!!');
     e.preventDefault();
     onSubmit({ title, content });
   };
@@ -57,13 +63,18 @@ const PostFormComponent = ({
         placeholder="제목을 입력하세요"
       />
       <Form onSubmit={handleSubmit}>
-        <QuillEditor value={content} onChange={handleContentChange} />
+        <QuillEditor
+          value={content}
+          onChange={handleContentChange}
+          editorStyle={{ marginBottom: '3rem' }}
+          quillStyle={{ height: '30rem' }}
+        />
+        <ButtonContainer>
+          <RightButtonGroup>
+            <BoardButton type="submit">저장</BoardButton>
+          </RightButtonGroup>
+        </ButtonContainer>
       </Form>
-      <ButtonContainer>
-        <RightButtonGroup>
-          <BoardButton type="submit">저장</BoardButton>
-        </RightButtonGroup>
-      </ButtonContainer>
     </Container>
   );
 };

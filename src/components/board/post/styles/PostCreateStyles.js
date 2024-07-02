@@ -25,4 +25,8 @@ export const TitleInput = styled.input`
   font-size: 1rem;
 `;
 
+// export const ContentContainer = styled.div`
+//   border: solid 0.1rem black;
+// `;
+
 export const Form = styled.form``;
