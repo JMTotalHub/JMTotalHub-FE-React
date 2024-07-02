@@ -10,7 +10,8 @@ import PostDeleteSlice from '../features/board/post/slices/PostDeleteSlice';
 
 import commentListSlice from '../features/board/comment/slices/CommentListSlice';
 import commentCreateSlice from '../features/board/comment/slices/CommentCreateSlice';
-import CommentDeleteSlice from '../features/board/comment/slices/CommentDeleteSlice';
+import commentUpdateSlice from '../features/board/comment/slices/CommentUpdateSlice';
+import commentDeleteSlice from '../features/board/comment/slices/CommentDeleteSlice';
 
 export const boardStore = configureStore({
   reducer: {
@@ -27,6 +28,7 @@ export const boardStore = configureStore({
     // 댓글
     commentList: commentListSlice,
     commentCreate: commentCreateSlice,
-    commentDelete: CommentDeleteSlice,
+    commentUpdate: commentUpdateSlice,
+    commentDelete: commentDeleteSlice,
   },
 });

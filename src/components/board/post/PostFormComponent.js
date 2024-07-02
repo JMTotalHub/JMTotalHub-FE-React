@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import QuillEditor from '../../common/QuillEditor';
 
+import { Container, TitleInput, Form } from './styles/PostCreateStyles';
+import {
+  BoardButton,
+  ButtonContainer,
+  RightButtonGroup,
+} from '../../../styles/commonButtonStyles';
+
 const PostFormComponent = ({
   inItTitle = '',
   inItContent = '',
-  // onTitleChange,
-  // onContentChange,
   onSubmit,
   status,
   error,
@@ -44,19 +49,22 @@ const PostFormComponent = ({
   }
 
   return (
-    <div>
-      <h3>폼 부분</h3>
-      <input
+    <Container>
+      <TitleInput
         type="text"
         value={title}
         onChange={handleTitleChange}
         placeholder="제목을 입력하세요"
       />
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <QuillEditor value={content} onChange={handleContentChange} />
-        <button type="submit">저장</button>
-      </form>
-    </div>
+      </Form>
+      <ButtonContainer>
+        <RightButtonGroup>
+          <BoardButton type="submit">저장</BoardButton>
+        </RightButtonGroup>
+      </ButtonContainer>
+    </Container>
   );
 };
 

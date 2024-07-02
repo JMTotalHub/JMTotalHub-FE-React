@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { formatDate } from '../../../utils/dateFormat';
 import { htmlDecoder } from '../../../utils/htmlDecoder';
 
 import postDetailsByPostId from '../../../features/board/post/actions/PostDetailsAction';
 
 import {
-  Container,
-  Row,
   Column,
+  Container,
   Content,
   Label,
+  Row,
   Value,
 } from './styles/PostDetailsStyles';
 
@@ -19,8 +20,6 @@ const PostDetailsComponent = ({ postId }) => {
   const { postDetails, status, error } = useSelector(
     (state) => state.postDetails
   );
-
-  console.log(postDetails);
 
   useEffect(() => {
     dispatch(
@@ -44,19 +43,6 @@ const PostDetailsComponent = ({ postId }) => {
   }
 
   const decodedContent = htmlDecoder(postDetails.content);
-
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    let formattedDate = date.toLocaleDateString('ko-KR', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-    });
-    if (formattedDate.endsWith('.')) {
-      formattedDate = formattedDate.slice(0, -1);
-    }
-    return formattedDate;
-  };
 
   return (
     <Container>

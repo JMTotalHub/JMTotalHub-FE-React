@@ -1,6 +1,6 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import PostsListComponent from '../../../components/board/post/PostListComponent';
-import { Link, useParams } from 'react-router-dom';
 
 const PostsListPage = () => {
   const { boardId } = useParams();
@@ -8,8 +8,6 @@ const PostsListPage = () => {
   return (
     <div>
       <PostsListComponent boardId={boardId} />
-      <Link to="/boards">게시판 목록</Link>
-      <Link to="new">글 작성</Link>
     </div>
   );
 };

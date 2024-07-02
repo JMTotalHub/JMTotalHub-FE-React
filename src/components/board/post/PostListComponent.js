@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import postListByBoardId from '../../../features/board/post/actions/PostListAction';
 import Pagination from '../../common/Pagination';
+import { formatDateWithToday } from '../../../utils/dateFormat';
+
+import {
+  ButtonContainer,
+  LeftButtonGroup,
+  RightButtonGroup,
+  BoardButton,
+} from '../../../styles/commonButtonStyles';
 
 import {
   Container,
@@ -34,34 +42,6 @@ const PostsListComponent = ({ boardId }) => {
     setCurrentPage(page);
   };
 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const today = new Date();
-    const isToday = date.toDateString() === today.toDateString();
-
-    if (isToday) {
-      return (
-        '당일 ' +
-        date.toLocaleTimeString('ko-KR', {
-          hour: '2-digit',
-          minute: '2-digit',
-          hour12: false, // 24시간제로 설정
-        })
-      );
-    } else {
-      // toLocaleDateString 사용 후 마지막 마침표 제거
-      let formattedDate = date.toLocaleDateString('ko-KR', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-      });
-      if (formattedDate.endsWith('.')) {
-        formattedDate = formattedDate.slice(0, -1);
-      }
-      return formattedDate;
-    }
-  };
-
   useEffect(() => {
     dispatch(
       postListByBoardId({
@@ -71,6 +51,16 @@ const PostsListComponent = ({ boardId }) => {
       })
     );
   }, [currentPage]);
+
+  const navigate = useNavigate();
+
+  const handleGotoBoardListClick = () => {
+    navigate('/boards');
+  };
+
+  const handleGotoBoardCreateClick = () => {
+    navigate('new');
+  };
 
   if (status === 'idle') {
     return <div>Loading... 데이터를 요청합니다.</div>;
@@ -109,12 +99,22 @@ const PostsListComponent = ({ boardId }) => {
               </TableCell>
               <TableCell>
                 {/* {new Date(post.created_at).toLocaleString()} */}
-                {formatDate(post.created_at)}
+                {formatDateWithToday(post.created_at)}
               </TableCell>
             </TableRow>
           ))}
         </tbody>
       </Table>
+      <ButtonContainer>
+        <LeftButtonGroup>
+          <BoardButton onClick={handleGotoBoardListClick}>
+            게시판 목록
+          </BoardButton>
+        </LeftButtonGroup>
+        <RightButtonGroup>
+          <BoardButton onClick={handleGotoBoardCreateClick}>글작성</BoardButton>
+        </RightButtonGroup>
+      </ButtonContainer>
       <Pagination
         totalPage={totalPage}
         currentPage={currentPage}

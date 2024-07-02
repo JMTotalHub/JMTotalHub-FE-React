@@ -33,6 +33,13 @@ export const Column = styled.div`
     border-right: 0.1rem solid #ccc; /* Column 사이에 수직선 추가 */
     padding-right: 1rem; /* 수직선과 내용 사이에 간격 추가 */
   }
+
+  @media (max-width: 768px) {
+    &:not(:last-child) {
+      border-right: none; /* 작은 화면일 때 수직선 제거 */
+      padding-right: 0; /* 패딩 제거 */
+    }
+  }
 `;
 
 export const Label = styled.label`
@@ -57,5 +64,5 @@ export const Value = styled.span`
 `;
 
 export const Content = styled.div`
-  padding: 0 1rem;
+  padding: 1rem 1rem;
 `;

@@ -14,14 +14,10 @@ const PostUpdateComponent = ({ boardId, postId }) => {
     (state) => state.postUpdate
   );
 
-  console.log('boardId2 : ' + boardId);
-  console.log('postId2 : ' + postId);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   if (updateStatus === 'succeeded') {
-    console.log('동작함');
     dispatch(postUpdateSliceResetState());
     navigate(`/boards/${boardId}/posts/${postId}`);
   }

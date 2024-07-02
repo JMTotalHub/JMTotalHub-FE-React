@@ -20,8 +20,6 @@ const PostDetailsPage = () => {
   const { boardId, postId } = useParams();
   const { pageNum } = useSelector((state) => state.postList);
 
-  console.log('pageNum : ' + pageNum);
-
   const navigate = useNavigate();
 
   const handleEditClick = () => {

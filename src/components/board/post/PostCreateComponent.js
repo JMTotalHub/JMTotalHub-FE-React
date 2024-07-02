@@ -30,7 +30,6 @@ const PostCreateComponent = ({ boardId, pageNum }) => {
 
   return (
     <div>
-      <h3>작성 컴포넌트</h3>
       <PostFormComponent
         onSubmit={submitHandler}
         status={status}

@@ -9,7 +9,7 @@ const PostCreatePage = () => {
 
   return (
     <div>
-      <h1>게시글 작성 페이지</h1>
+      <h2>게시글 작성</h2>
       <PostCreateComponent boardId={boardId} pageNum={pageNum} />
     </div>
   );
