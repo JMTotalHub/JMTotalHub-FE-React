@@ -30,4 +30,4 @@ const commentListSlice = createSlice({
   },
 });
 
-export default commentListSlice.reducer;
+export default commentListSlice;

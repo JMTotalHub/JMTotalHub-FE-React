@@ -29,4 +29,4 @@ const PostDeleteSlice = createSlice({
 });
 
 export const { postDeleteSliceResetState } = PostDeleteSlice.actions;
-export default PostDeleteSlice.reducer;
+export default PostDeleteSlice;

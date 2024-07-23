@@ -46,4 +46,4 @@ const postUpdateSlice = createSlice({
 });
 
 export const { postUpdateSliceResetState } = postUpdateSlice.actions;
-export default postUpdateSlice.reducer;
+export default postUpdateSlice;

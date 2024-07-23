@@ -46,4 +46,4 @@ const CommentUpdateSlice = createSlice({
 });
 
 export const { commentUpdateSliceResetState } = CommentUpdateSlice.actions;
-export default CommentUpdateSlice.reducer;
+export default CommentUpdateSlice;

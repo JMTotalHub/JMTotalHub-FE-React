@@ -6,7 +6,7 @@ import PostFormComponent from './PostFormComponent';
 import { postCreateSliceResetState } from '../../../features/board/post/slices/postCreateSlice';
 
 const PostCreateComponent = ({ boardId, pageNum }) => {
-  const { status, error } = useSelector((state) => state.postCreate);
+  const { status, error } = useSelector((state) => state.board.postCreate);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

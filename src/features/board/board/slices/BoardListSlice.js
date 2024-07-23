@@ -29,4 +29,4 @@ const boardListSlice = createSlice({
   },
 });
 
-export default boardListSlice.reducer;
+export default boardListSlice;
