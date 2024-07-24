@@ -5,7 +5,7 @@ import { commentCreateSliceResetState } from '../../../features/board/comment/sl
 import CommentFormComponent from './CommentFormComponent';
 
 const CommentCreateComponent = ({ postId }) => {
-  const { status, error } = useSelector((state) => state.commentCreate);
+  const { status, error } = useSelector((state) => state.board.commentCreate);
 
   const dispatch = useDispatch();
 

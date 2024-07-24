@@ -18,7 +18,7 @@ const PostDetailsComponent = ({ postId }) => {
   const dispatch = useDispatch();
 
   const { postDetails, status, error } = useSelector(
-    (state) => state.postDetails
+    (state) => state.board.postDetails
   );
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const PostDetailsComponent = ({ postId }) => {
         postId,
       })
     );
-  }, []);
+  }, [dispatch, postId]);
 
   if (status === 'idle') {
     return <div>Loading... 데이터를 요청합니다.</div>;

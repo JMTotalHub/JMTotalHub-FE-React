@@ -1,37 +1,16 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import authSignUpByUserData from '../../features/auth/actions/SignUpAction';
-import { useNavigate } from 'react-router-dom';
 
-const SignUpComponent = () => {
+const SignInComponent = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginType, setLoginType] = useState('');
   const [roleType, setRoleType] = useState('');
 
-  const { status, error } = useSelector((state) => state.auth.signUp);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  if (status === 'succeeded') {
-    navigate('/');
-  }
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(
-      authSignUpByUserData({
-        bodyData: {
-          email,
-          password,
-          loginType,
-          roleType,
-        },
-      })
-    );
-  };
+  const submitHandler = (e) => {};
 
   return (
     <div>
+      SignInComponent
       <form onSubmit={submitHandler}>
         <div>
           <label htmlFor="email">Email:</label>
@@ -55,23 +34,28 @@ const SignUpComponent = () => {
         </div>
         <div>
           <label htmlFor="loginType">Login Type:</label>
-          <input
-            type="text"
+          <select
             id="loginType"
             value={loginType}
             onChange={(e) => setLoginType(e.target.value)}
             required
-          />
+          >
+            <option value="normal">normal</option>
+            <option value="admin">admin</option>
+          </select>
         </div>
         <div>
           <label htmlFor="roleType">Role Type:</label>
-          <input
-            type="text"
+          <select
             id="roleType"
             value={roleType}
             onChange={(e) => setRoleType(e.target.value)}
             required
-          />
+          >
+            <option value="normal">normal</option>
+            <option value="naver">naver</option>
+            <option value="google">google</option>
+          </select>
         </div>
         <button type="submit">Sign Up</button>
       </form>
@@ -79,4 +63,4 @@ const SignUpComponent = () => {
   );
 };
 
-export default SignUpComponent;
+export default SignInComponent;

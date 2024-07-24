@@ -30,22 +30,22 @@ const CommentListComponent = ({ postId }) => {
 
   // 댓글 목록
   const { commentList, totalPage, pageNum, status, error } = useSelector(
-    (state) => state.commentList
+    (state) => state.board.commentList
   );
 
   // 댓글 생성 상태
   const { status: commentCreateStatus } = useSelector(
-    (state) => state.commentCreate
+    (state) => state.board.commentCreate
   );
 
   // 댓글 업데이트 상태
   const { updateStatus: commentUpdateStatus } = useSelector(
-    (state) => state.commentUpdate
+    (state) => state.board.commentUpdate
   );
 
   // 댓글 삭제 상태
   const { status: commentDeleteStatus } = useSelector(
-    (state) => state.commentDelete
+    (state) => state.board.commentDelete
   );
 
   const handleEdit = (commentId) => {
@@ -55,8 +55,6 @@ const CommentListComponent = ({ postId }) => {
   const handleDelete = (commentId) => {
     dispatch(CommentDeleteByCommentId({ commentId }));
   };
-
-  useEffect(() => {}, []);
 
   useEffect(() => {
     dispatch(
