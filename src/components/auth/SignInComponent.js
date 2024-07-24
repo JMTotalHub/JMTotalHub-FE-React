@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import authSignInByUserData from '../../features/auth/actions/SIgnInAction';
 
 const SignInComponent = () => {
   const [email, setEmail] = useState('');
@@ -6,7 +9,25 @@ const SignInComponent = () => {
   const [loginType, setLoginType] = useState('');
   const [roleType, setRoleType] = useState('');
 
-  const submitHandler = (e) => {};
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { status } = useSelector((state) => state.auth.signIn);
+
+  if (status == 'succeeded') {
+    navigate('/');
+  }
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(
+      authSignInByUserData({
+        bodyData: {
+          email,
+          password,
+        },
+      })
+    );
+  };
 
   return (
     <div>

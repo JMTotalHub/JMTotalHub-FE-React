@@ -13,16 +13,19 @@ if (ENV === 'dev') {
   // 개발 환경의 API 호출 헬퍼 함수
   api = axios.create({
     baseURL: API_URL,
+    withCredentials: true,
   });
 } else if (ENV === 'prod') {
   // 배포 환경의 API 호출 헬퍼 함수
   api = axios.create({
     baseURL: `${API_URL}/api`,
+    withCredentials: true,
   });
 } else {
   // 기본 API 호출 헬퍼 함수 (환경 변수 설정이 없을 경우)
   api = axios.create({
     baseURL: API_URL,
+    withCredentials: true,
   });
 }
 

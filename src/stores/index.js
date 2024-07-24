@@ -9,8 +9,4 @@ const store = configureStore({
   },
 });
 
-console.log('Initial State:', store.getState());
-console.log('Store Reducers in store:', store.reducer);
-console.log('authReducer : ' + boardReducer.boardList);
-
 export default store;
