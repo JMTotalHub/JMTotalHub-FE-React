@@ -25,4 +25,4 @@ const PostDetailsSlice = createSlice({
   },
 });
 
-export default PostDetailsSlice.reducer;
+export default PostDetailsSlice;

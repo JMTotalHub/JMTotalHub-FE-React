@@ -17,7 +17,9 @@ import {
 
 const BoardListComponent = () => {
   const dispatch = useDispatch();
-  const { boardList, status, error } = useSelector((state) => state.boardList);
+  const { boardList, status, error } = useSelector(
+    (state) => state.board.boardList
+  );
 
   useEffect(() => {
     dispatch(boardListByNothing());

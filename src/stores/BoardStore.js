@@ -1,34 +1,33 @@
-import { configureStore } from '@reduxjs/toolkit';
-
 import boardListSlice from '../features/board/board/slices/BoardListSlice';
 
-import postListSlice from '../features/board/post/slices/PostListSlice';
+import PostDeleteSlice from '../features/board/post/slices/PostDeleteSlice';
 import postDetailsSlice from '../features/board/post/slices/PostDetailsSlice';
+import postListSlice from '../features/board/post/slices/PostListSlice';
 import postCreateSlice from '../features/board/post/slices/postCreateSlice';
 import postUpdateSlice from '../features/board/post/slices/postUpdateSlice';
-import PostDeleteSlice from '../features/board/post/slices/PostDeleteSlice';
 
-import commentListSlice from '../features/board/comment/slices/CommentListSlice';
 import commentCreateSlice from '../features/board/comment/slices/CommentCreateSlice';
-import commentUpdateSlice from '../features/board/comment/slices/CommentUpdateSlice';
 import commentDeleteSlice from '../features/board/comment/slices/CommentDeleteSlice';
+import commentListSlice from '../features/board/comment/slices/CommentListSlice';
+import commentUpdateSlice from '../features/board/comment/slices/CommentUpdateSlice';
+import { combineReducers } from 'redux';
 
-export const boardStore = configureStore({
-  reducer: {
-    // 게시판
-    boardList: boardListSlice,
+const boardReducer = combineReducers({
+  // 게시판
+  boardList: boardListSlice.reducer,
 
-    // 게시글
-    postList: postListSlice,
-    postDetails: postDetailsSlice,
-    postCreate: postCreateSlice,
-    postUpdate: postUpdateSlice,
-    postDelete: PostDeleteSlice,
+  // 게시글
+  postList: postListSlice.reducer,
+  postDetails: postDetailsSlice.reducer,
+  postCreate: postCreateSlice.reducer,
+  postUpdate: postUpdateSlice.reducer,
+  postDelete: PostDeleteSlice.reducer,
 
-    // 댓글
-    commentList: commentListSlice,
-    commentCreate: commentCreateSlice,
-    commentUpdate: commentUpdateSlice,
-    commentDelete: commentDeleteSlice,
-  },
+  // 댓글
+  commentList: commentListSlice.reducer,
+  commentCreate: commentCreateSlice.reducer,
+  commentUpdate: commentUpdateSlice.reducer,
+  commentDelete: commentDeleteSlice.reducer,
 });
+
+export default boardReducer;

@@ -10,7 +10,7 @@ const CommentUpdateComponent = ({ commentId }) => {
   const [initContent, setInItContent] = useState('');
 
   const { commentDetails, getStatus, updateStatus, error } = useSelector(
-    (state) => state.commentUpdate
+    (state) => state.board.commentUpdate
   );
 
   const dispatch = useDispatch();

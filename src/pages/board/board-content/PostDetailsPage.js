@@ -18,7 +18,7 @@ import { Container } from './styles/PostDetailsStyles';
 
 const PostDetailsPage = () => {
   const { boardId, postId } = useParams();
-  const { pageNum } = useSelector((state) => state.postList);
+  const { pageNum } = useSelector((state) => state.board.postList);
 
   const navigate = useNavigate();
 

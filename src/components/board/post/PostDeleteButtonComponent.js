@@ -7,7 +7,7 @@ import { postDeleteSliceResetState } from '../../../features/board/post/slices/P
 import { BoardButton } from '../../../styles/commonButtonStyles';
 
 const PostDeleteButtonComponent = ({ boardId, postId, pageNum }) => {
-  const { status, error } = useSelector((state) => state.postDelete);
+  const { status, error } = useSelector((state) => state.board.postDelete);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

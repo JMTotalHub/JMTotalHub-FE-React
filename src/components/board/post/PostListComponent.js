@@ -27,7 +27,7 @@ import {
 const PostsListComponent = ({ boardId }) => {
   const dispatch = useDispatch();
   const { postList, totalPage, pageNum, status, error } = useSelector(
-    (state) => state.postList
+    (state) => state.board.postList
   );
 
   const [searchParams, setSearchParams] = useSearchParams();

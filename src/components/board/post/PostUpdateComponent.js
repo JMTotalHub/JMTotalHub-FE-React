@@ -11,7 +11,7 @@ const PostUpdateComponent = ({ boardId, postId }) => {
   const [inItTitle, setInItTitle] = useState('');
   const [inItContent, setInItContent] = useState('');
   const { postDetails, getStatus, updateStatus, error } = useSelector(
-    (state) => state.postUpdate
+    (state) => state.board.postUpdate
   );
 
   const dispatch = useDispatch();

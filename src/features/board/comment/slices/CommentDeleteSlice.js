@@ -23,4 +23,4 @@ const CommentDeleteSlice = createSlice({
   },
 });
 
-export default CommentDeleteSlice.reducer;
+export default CommentDeleteSlice;

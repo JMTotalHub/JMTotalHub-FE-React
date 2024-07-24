@@ -36,4 +36,4 @@ const postListSlice = createSlice({
   },
 });
 
-export default postListSlice.reducer;
+export default postListSlice;

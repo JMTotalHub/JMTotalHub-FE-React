@@ -32,4 +32,4 @@ const CommentCreateSlice = createSlice({
 });
 
 export const { commentCreateSliceResetState } = CommentCreateSlice.actions;
-export default CommentCreateSlice.reducer;
+export default CommentCreateSlice;

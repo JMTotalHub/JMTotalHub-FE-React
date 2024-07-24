@@ -33,4 +33,4 @@ const postCreateSlice = createSlice({
 });
 
 export const { postCreateSliceResetState } = postCreateSlice.actions;
-export default postCreateSlice.reducer;
+export default postCreateSlice;

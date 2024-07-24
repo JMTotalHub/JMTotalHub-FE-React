@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 const PostCreatePage = () => {
   const { boardId } = useParams();
-  const { pageNum } = useSelector((state) => state.postList);
+  const { pageNum } = useSelector((state) => state.board.postList);
 
   return (
     <div>
