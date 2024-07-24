@@ -30,6 +30,4 @@ const boardReducer = combineReducers({
   commentDelete: commentDeleteSlice.reducer,
 });
 
-console.log('Board Reducer:', boardReducer);
-
 export default boardReducer;
