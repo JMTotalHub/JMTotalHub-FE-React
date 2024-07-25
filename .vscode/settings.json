@@ -10,5 +10,7 @@
     "typescript",
     "typescriptreact"
   ],
-  "prettier.requireConfig": true
+  "prettier.requireConfig": true,
+
+  "files.encoding": "utf8"
 }
