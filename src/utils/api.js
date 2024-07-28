@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-const ENV = process.env.REACT_ENV_STATUS;
+const ENV = process.env.REACT_APP_ENV_STATUS;
 
 // const PROTOCOL = ENV === 'prod' ? 'https' : 'http';
 const PROTOCOL = 'http';
 const SERVER_IP =
   ENV === 'prod'
-    ? process.env.REACT_NGINX_SERVER_HOST
-    : process.env.REACT_EXPRESS_SERVER01_HOST;
+    ? process.env.REACT_APP_NGINX_SERVER_HOST
+    : process.env.REACT_APP_EXPRESS_SERVER01_HOST;
 const API_URL = `${PROTOCOL}://${SERVER_IP}`;
 const BASE_URL = ENV === 'prod' ? `${API_URL}/api` : `${API_URL}`;
 
