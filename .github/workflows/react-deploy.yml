@@ -52,6 +52,6 @@ jobs:
           export REACT_ENV_STATUS=${{ env.REACT_ENV_STATUS }}
           export REACT_NGINX_SERVER_HOST=${{ env.REACT_NGINX_SERVER_HOST }}
           export REACT_EXPRESS_SERVER01_HOST=${{ env.REACT_EXPRESS_SERVER01_HOST }}
-          cd JMTotalHub-DockerCompose
+          cd react
           sudo -E docker-compose pull react 
           sudo -E docker-compose up -d react 
