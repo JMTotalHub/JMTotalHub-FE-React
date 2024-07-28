@@ -16,7 +16,7 @@ jobs:
       - name: 환경 변수 로드
         id: load-env
         run: |
-          echo "${{ secrets.REACT_SERVER01_ENV }}" | while IFS= read -r line; do
+          echo "${{ secrets.REACT_APP_SERVER01_ENV }}" | while IFS= read -r line; do
             # 주석과 빈 줄 무시
             if [[ -n "$line" && "$line" != \#* ]]; then
               echo "$line" >> $GITHUB_ENV
@@ -43,9 +43,9 @@ jobs:
       - name: EC2 배포
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ env.REACT_SERVER01_EC2_HOST }}
-          username: ${{ env.REACT_SERVER01_EC2_USERNAME }}
-          key: ${{ secrets.REACT_SERVER01_EC2_PRIVATE_KEY }}
+          host: ${{ env.REACT_APP_SERVER01_EC2_HOST }}
+          username: ${{ env.REACT_APP_SERVER01_EC2_USERNAME }}
+          key: ${{ secrets.REACT_APP_SERVER01_EC2_PRIVATE_KEY }}
           script: |
             docker image prune -a -f --filter "until=12h"
             docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
