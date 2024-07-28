@@ -11,6 +11,20 @@ const SERVER_IP =
 const API_URL = `${PROTOCOL}://${SERVER_IP}`;
 const BASE_URL = ENV === 'prod' ? `${API_URL}/api` : `${API_URL}`;
 
+// 환경 변수와 SERVER_IP 값을 콘솔에 출력
+console.log('환경 변수 REACT_APP_ENV_STATUS:', ENV);
+console.log(
+  '환경 변수 REACT_APP_NGINX_SERVER_HOST:',
+  process.env.REACT_APP_NGINX_SERVER_HOST
+);
+console.log(
+  '환경 변수 REACT_APP_EXPRESS_SERVER01_HOST:',
+  process.env.REACT_APP_EXPRESS_SERVER01_HOST
+);
+console.log('SERVER_IP:', SERVER_IP);
+console.log('API_URL:', API_URL);
+console.log('BASE_URL:', BASE_URL);
+
 const api = axios.create({
   baseURL: BASE_URL,
   withCredentials: true,
