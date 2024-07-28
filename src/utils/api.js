@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const ENV = process.env.REACT_APP_ENV;
+const ENV = process.env.REACT_ENV_STATUS;
 
 // const PROTOCOL = ENV === 'prod' ? 'https' : 'http';
 const PROTOCOL = 'http';
