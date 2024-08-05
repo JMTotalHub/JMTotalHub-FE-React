@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import api from '../../utils/api'; // 헬퍼 함수
+import api from '../../utils/connections/api'; // 헬퍼 함수
 
 const Test = () => {
   const [tests, setTests] = useState([]);
