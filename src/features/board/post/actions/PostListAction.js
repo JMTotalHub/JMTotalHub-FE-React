@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import api from '../../../../utils/api';
+import api from '../../../../utils/connections/api';
 
 // Thunk 액션 생성
 // (식별용 타입, 비동기 함수)
